@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 
 import "../utilities.css";
+import "./App.css";
 
 import { socket } from "../client-socket.js";
 
@@ -43,11 +44,18 @@ const App = () => {
 
   return (
     <>
-      <div>test</div>
-      <Router>
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        <NotFound default />
-      </Router>
+      <div className="App-body">
+        <div>test</div>
+        <Router>
+          <Skeleton
+            path="/"
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            userId={userId}
+          />
+          <NotFound default />
+        </Router>
+      </div>
     </>
   );
 };

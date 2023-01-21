@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Maze from "./pages/Maze.js";
 
 import "../utilities.css";
 import "./App.css";

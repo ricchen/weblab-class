@@ -10,23 +10,26 @@ const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.goo
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      {userId ? (
-        <button
-          onClick={() => {
-            googleLogout();
-            handleLogout();
-          }}
-        >
-          Logout
-        </button>
-      ) : (
-        <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
-      )}
-      <div className="skeleton-title">
-        <h1>EXAMPLE NAME</h1>
+      <div>
+        <h1 className="skeleton-title">EXAMPLE NAME</h1>
         <a href="https://docs.google.com/document/d/110JdHAn3Wnp3_AyQLkqH2W8h5oby7OVsYIeHYSiUzRs/edit?usp=sharing">
           Check out this getting started guide
         </a>
+      </div>
+
+      <div className="skeleton-google">
+        {userId ? (
+          <button
+            onClick={() => {
+              googleLogout();
+              handleLogout();
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
+        )}
       </div>
     </GoogleOAuthProvider>
   );

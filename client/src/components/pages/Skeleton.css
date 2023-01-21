@@ -1,5 +1,15 @@
 /* Fill me in :) */
 .skeleton-title {
+  position: relative;
+  top: 50px;
   text-align: center;
   color: white;
+  font-size: 60px;
+}
+
+.skeleton-google {
+  margin: auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }

@@ -4,6 +4,10 @@ import jwt_decode from "jwt-decode";
 
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Start from "./pages/Start.js";
+import Game from "./pages/Game.js";
+import Profile from "./pages/Profile.js";
+import Achievements from "./pages/Achievements.js";
 
 import "../utilities.css";
 import "./App.css";
@@ -45,7 +49,6 @@ const App = () => {
   return (
     <>
       <div className="App-body">
-        <div>test</div>
         <Router>
           <Skeleton
             path="/"
@@ -53,6 +56,10 @@ const App = () => {
             handleLogout={handleLogout}
             userId={userId}
           />
+          <Start path="/start/" />
+          <Game path="/game/" />
+          <Achievements path="/achievements/" />
+          <Profile path="/profile" />
           <NotFound default />
         </Router>
       </div>

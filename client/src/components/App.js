@@ -7,6 +7,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Maze from "./pages/Maze.js";
 
 import "../utilities.css";
+import "./App.css";
 
 import { socket } from "../client-socket.js";
 
@@ -44,6 +45,7 @@ const App = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <div>test</div>
       <Router>
         <Skeleton /*path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} */
@@ -51,6 +53,20 @@ const App = () => {
         <NotFound default />
         <Maze path="/" />
       </Router>
+=======
+      <div className="App-body">
+        <div>test</div>
+        <Router>
+          <Skeleton
+            path="/"
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            userId={userId}
+          />
+          <NotFound default />
+        </Router>
+      </div>
+>>>>>>> 8826d9207ee67c5de20f6c9764646c22bbcfa954
     </>
   );
 };

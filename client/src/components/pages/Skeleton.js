@@ -9,16 +9,28 @@ import { Link } from "@reach/router";
 const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
+  const transition = document.querySelector(".transition");
+  setTimeout(() => {
+    transition.classList.remove("active-transition");
+    //removes "active-transition" class from transition div, which sets its opacity to 0
+  });
+
   return (
     <>
+      <div className="transition active-transition"></div>
+
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        <div>
-          <h1 className="skeleton-title">EXAMPLE NAME</h1>
+        <div className="skeleton-title-over relative">
+          <h1 className="lightpink">EXAMPLE NAME</h1>
+        </div>
+        <div className="skeleton-title-under relative">
+          <h1 className="darkpink">EXAMPLE NAME</h1>
         </div>
 
-        <div className="skeleton-google">
+        <div className="skeleton-google relative">
           {userId ? (
             <button
+              className="skeleton-button"
               onClick={() => {
                 googleLogout();
                 handleLogout();
@@ -31,7 +43,11 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
           )}
         </div>
       </GoogleOAuthProvider>
-      {userId ? <Link to="/start/">Start</Link> : null}
+      {userId ? (
+        <Link className="relative skeleton-button" to="/start/">
+          Start
+        </Link>
+      ) : null}
     </>
   );
 };

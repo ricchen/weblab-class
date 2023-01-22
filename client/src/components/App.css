@@ -1,6 +1,9 @@
 .App-body {
-  background-color: lightblue;
+  background-color: #4e9196;
   margin: auto;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }

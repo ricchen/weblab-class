@@ -1,15 +1,56 @@
 /* Fill me in :) */
-.skeleton-title {
-  position: relative;
-  top: 50px;
+.lightpink {
+  color: var(--lightpink);
+}
+
+.darkpink {
+  color: var(--darkpink);
+}
+
+.skeleton-title-over {
+  top: 60px;
   text-align: center;
-  color: white;
   font-size: 60px;
+  z-index: 2;
+}
+
+.skeleton-title-under {
+  text-align: center;
+  font-size: 60px;
+  bottom: 155px;
+  right: 10px;
 }
 
 .skeleton-google {
   margin: auto;
-  display: flex;
   text-align: center;
   justify-content: center;
+  bottom: 200px;
+}
+
+.skeleton-button {
+  width: 120px;
+  height: 60px;
+  font-size: 35px;
+}
+
+.transition {
+  position: fixed;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background-color: #314961;
+  z-index: 101;
+  transition: 0.9s ease-in;
+}
+
+.active-transition {
+  bottom: 0px;
+  pointer-events: all;
+}
+
+.relative {
+  position: relative;
 }

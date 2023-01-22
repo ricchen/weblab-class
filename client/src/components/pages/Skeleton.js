@@ -14,9 +14,6 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div>
           <h1 className="skeleton-title">EXAMPLE NAME</h1>
-          <a href="https://docs.google.com/document/d/110JdHAn3Wnp3_AyQLkqH2W8h5oby7OVsYIeHYSiUzRs/edit?usp=sharing">
-            Check out this getting started guide
-          </a>
         </div>
 
         <div className="skeleton-google">

@@ -1,14 +1,14 @@
 import React from "react";
+import NavBar from "../modules/NavBar.js";
 
 import { Link } from "@reach/router";
 
-const Start = () => {
+const Start = (props) => {
   return (
-    <div>
-      <Link to="/game/">Join</Link>
-      <Link to="/profile/">Profile</Link>
-      <Link to="/achievements/">Achievements</Link>
-    </div>
+    <>
+      <NavBar />
+      <div>START GAME</div>
+    </>
   );
 };
 

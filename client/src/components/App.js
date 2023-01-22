@@ -15,6 +15,7 @@ import "./App.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import NavBar from "./modules/NavBar.js";
 
 /**
  * Define the "App" component
@@ -56,10 +57,10 @@ const App = () => {
             handleLogout={handleLogout}
             userId={userId}
           />
-          <Start path="/start/" />
-          <Game path="/game/" />
-          <Achievements path="/achievements/" />
-          <Profile path="/profile" />
+          <Start path="/start/" userId={userId} />
+          <Game path="/game/" userId={userId} />
+          <Achievements path="/achievements/" userId={userId} />
+          <Profile path="/profile" userId={userId} />
           <NotFound default />
         </Router>
       </div>

@@ -10,13 +10,19 @@ const Profile = (props) => {
     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
   }, []);
 
-  return (
-    <>
-      <NavBar />
-      <div>profile</div>
-      <div>{props.userId}</div>
-    </>
-  );
+  if (!user) {
+    return <div> Loading! </div>;
+  } else {
+    console.log(user.pfp);
+    return (
+      <>
+        <NavBar />
+        <div>profile</div>
+        <div>{user.name}</div>
+        <img src={user ? user.pfp : ""}></img>
+      </>
+    );
+  }
 };
 
 export default Profile;

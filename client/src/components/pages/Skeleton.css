@@ -1,9 +1,9 @@
 /* Fill me in :) */
-.lightpink {
+.skeleton-lightpink {
   color: var(--lightpink);
 }
 
-.darkpink {
+.skeleton-darkpink {
   color: var(--darkpink);
 }
 
@@ -32,23 +32,6 @@
   width: 120px;
   height: 60px;
   font-size: 35px;
-}
-
-.transitions {
-  position: fixed;
-  height: 100%;
-  bottom: -100%;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  background-color: #314961;
-  z-index: 101;
-  transition: 0.9s ease-in;
-}
-
-.active-transition {
-  bottom: 0px;
-  pointer-events: all;
 }
 
 .relative {

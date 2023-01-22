@@ -1,5 +1,5 @@
 .App-body {
-  background-color: #4e9196;
+  background-color: var(--cyan);
   margin: auto;
   position: fixed;
   left: 0;

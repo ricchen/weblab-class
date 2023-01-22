@@ -9,15 +9,17 @@ import { Link } from "@reach/router";
 const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.googleusercontent.com";
 
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
-  const transition = document.querySelector(".transition");
+  const transition = document.querySelector(".transitions");
   setTimeout(() => {
     transition.classList.remove("active-transition");
+
     //removes "active-transition" class from transition div, which sets its opacity to 0
-  });
+    //note: i removed "active-transition" class from the div because it bricked site after push
+  }, 300);
 
   return (
     <>
-      <div className="transition active-transition"></div>
+      <div className="transitions"></div>
 
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="skeleton-title-over relative">

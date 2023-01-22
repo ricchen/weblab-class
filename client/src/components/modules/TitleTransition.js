@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-import "./Transition.css";
+import "./TitleTransition.css";
 
-const Transition = () => {
+const TitleTransition = () => {
   const transition1 = document.querySelector(".transition1");
   const transition2 = document.querySelector(".transition2");
   const transition3 = document.querySelector(".transition3");
@@ -27,4 +27,4 @@ const Transition = () => {
   );
 };
 
-export default Transition;
+export default TitleTransition;

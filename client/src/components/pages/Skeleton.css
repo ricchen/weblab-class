@@ -7,33 +7,40 @@
   color: var(--darkpink);
 }
 
-.skeleton-title-over {
-  top: 60px;
+.skeleton-title {
+  top: 30px;
+  text-shadow: -8px 8px var(--darkpink), -16px 16px black;
   text-align: center;
   font-size: 60px;
+  letter-spacing: 0.2em;
   z-index: 2;
-}
-
-.skeleton-title-under {
-  text-align: center;
-  font-size: 60px;
-  bottom: 155px;
-  right: 10px;
 }
 
 .skeleton-google {
   margin: auto;
   text-align: center;
   justify-content: center;
-  bottom: 200px;
+  bottom: 0;
 }
 
 .skeleton-button {
+  padding: 0;
   width: 120px;
   height: 60px;
   font-size: 35px;
 }
 
+.skeleton-button-shell {
+  display: flex;
+  justify-content: center;
+}
+
 .relative {
   position: relative;
+}
+
+.topright {
+  position: absolute;
+  top: 40px;
+  right: 40px;
 }

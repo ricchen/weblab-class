@@ -1,0 +1,11 @@
+.button {
+  padding: 0;
+  width: 120px;
+  height: 60px;
+  font-size: 35px;
+}
+
+.button-shell {
+  display: flex;
+  justify-content: center;
+}

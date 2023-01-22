@@ -37,11 +37,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
         </div>
       </GoogleOAuthProvider>
       <div className="skeleton-button-shell">
-        {userId ? (
-          <Link className="relative skeleton-button" to="/start/">
-            Start
-          </Link>
-        ) : null}
+        {userId ? <Button url="/start/" name="START" /> : null}
       </div>
       <Button url="/start/" name="hello" /> {/*example of button component */}
     </>

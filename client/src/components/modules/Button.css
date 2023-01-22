@@ -1,8 +1,13 @@
 .button {
-  padding: 0;
-  width: 120px;
-  height: 60px;
   font-size: 35px;
+  background: var(--lightpink);
+  color: var(--white);
+  padding: 15px 45px 15px;
+  text-decoration: none;
+  margin: 20px;
+  justify-content: center;
+  box-shadow: -8px 8px var(--darkpink), -16px 16px black;
+  transform: skewX(10deg);
 }
 
 .button-shell {

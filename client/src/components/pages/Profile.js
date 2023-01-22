@@ -7,7 +7,9 @@ const Profile = (props) => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+    if (props.userId) {
+      get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+    }
   }, []);
 
   if (!user) {

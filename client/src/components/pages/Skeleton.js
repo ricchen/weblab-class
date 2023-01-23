@@ -13,7 +13,7 @@ const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.goo
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   return (
     <>
-      <TitleTransition />
+      {/* <TitleTransition /> */}
       {/* delete this if site bricks to sign into google then put this back in*/}
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="skeleton-title relative">

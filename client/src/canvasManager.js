@@ -7,7 +7,7 @@ const convertCoord = (x, y) => {
   if (!canvas) return;
   return {
     drawX: x,
-    drawY: canvas.height - y,
+    drawY: y,
   };
 };
 
@@ -21,9 +21,9 @@ const fillCircle = (context, x, y, radius, color) => {
 
 /** drawing functions */
 
-const drawPlayer = (context, x, y, radius, color) => {
-  const { drawX, drawY } = convertCoord(x, y);
-  fillCircle(context, drawX, drawY, radius, color);
+const drawPlayer = (context, x, y, color) => {
+  context.fillStyle = color;
+  context.fillRect(x, y, 40, 40);
 };
 
 /** main draw */
@@ -37,8 +37,17 @@ export const drawCanvas = (drawState, canvasRef) => {
   context.fillStyle = "black";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
+  for (let row in drawState.map) {
+    for (let col in drawState.map[row]) {
+      if (drawState.map[row][col] == "wall") {
+        context.fillStyle = "white";
+        context.fillRect(col, row, 50, 50);
+      }
+    }
+  }
+
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x, p.position.y, 20, "red");
+    drawPlayer(context, p.position.x, p.position.y, "red");
   });
 };

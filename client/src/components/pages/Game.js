@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { socket } from "../../client-socket.js";
 import { get, post } from "../../utilities.js";
 import { drawCanvas } from "../../canvasManager";
-import { handleInput } from "../../input";
+import { keyDown, keyUp } from "../../input";
 
 import "../../utilities.css";
 
@@ -17,14 +17,16 @@ const Game = (props) => {
     // we imported from input.js. Refer to documentation for `addEventListener` here:
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     // Your code goes here!
-    window.addEventListener("keydown", handleInput);
+    window.addEventListener("keydown", keyDown);
+    window.addEventListener("keyup", keyUp);
     // remove event listener on unmount
     return () => {
       // TODO (Step 3.3, pt 2): remove event listener when the page unmounts (1 line)
       // This return statement allows us to run code when the user leaves the page.
       // Hint: `window` also has a `removeEventListener` method
       // Your code goes here!
-      window.removeEventListener("keydown", handleInput);
+      window.removeEventListener("keydown", keyDown);
+      window.removeEventListener("keyup", keyUp);
     };
   }, []);
 

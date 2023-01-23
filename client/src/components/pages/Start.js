@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "../modules/NavBar.js";
-
-import { Link } from "@reach/router";
+import { SlideOut } from "../modules/Transition";
 
 const Start = (props) => {
   return (
     <>
+      <SlideOut />
       <NavBar />
       <div>START GAME</div>
     </>

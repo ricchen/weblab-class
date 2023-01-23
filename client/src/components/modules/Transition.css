@@ -1,0 +1,123 @@
+.lightpink {
+  background-color: var(--lightpink);
+}
+
+.cyan {
+  background-color: var(--cyan);
+}
+
+.white {
+  background-color: var(--white);
+}
+
+.darkpink {
+  background-color: var(--darkpink);
+}
+
+.top {
+  z-index: 101;
+}
+
+.mid {
+  z-index: 100;
+}
+
+.bottom {
+  z-index: 99;
+}
+
+.slideInTop {
+  animation-delay: 200ms;
+  animation-duration: 4.1s;
+}
+
+.slideInMid {
+  animation-delay: 100ms;
+  animation-duration: 4.3s;
+}
+
+.slideInBot {
+  animation-delay: 0;
+  animation-duration: 4.5s;
+}
+
+.slideOutTop {
+  animation-delay: 0ms;
+  animation-duration: 4.5s;
+}
+
+.slideOutMid {
+  animation-delay: 100ms;
+  animation-duration: 4.3s;
+}
+
+.slideOutBot {
+  animation-delay: 200ms;
+  animation-duration: 4.1s;
+}
+
+.slideIn {
+  position: fixed;
+  height: 150%;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  animation-name: slideIn;
+  animation-timing-function: ease-in-out;
+  opacity: 0;
+}
+
+.slideOut {
+  position: fixed;
+  height: 150%;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  animation-name: slideOut;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+
+  5% {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+
+  35% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0%);
+  }
+
+  5% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  35% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+}

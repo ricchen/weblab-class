@@ -3,9 +3,8 @@ import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/goo
 
 import "../../utilities.css";
 import "./Skeleton.css";
-import TitleTransition from "../modules/TitleTransition";
-import { Link } from "@reach/router";
 import Button from "../modules/Button";
+import { SlideOut } from "../modules/Transition";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.googleusercontent.com";
@@ -13,8 +12,7 @@ const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.goo
 const Skeleton = ({ userId, handleLogin, handleLogout }) => {
   return (
     <>
-      <TitleTransition />
-      {/* delete this if site bricks to sign into google then put this back in*/}
+      <SlideOut />
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="skeleton-title relative">
           <h1 className="skeleton-lightpink">EXAMPLE NAME</h1>

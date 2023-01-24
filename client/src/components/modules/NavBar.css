@@ -3,19 +3,37 @@
   height: 20%;
   left: 0;
   right: 0;
-  transform: translateY(-75%);
   background-color: var(--neongreen);
   box-shadow: 0em 1em var(--paleblue), 0em 2em black;
-  transition: 0.5s ease-out;
+  animation-name: slideUp;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 .NavBar-slider:hover {
-  transform: translateY(0%);
   animation-name: slideDown;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes slideDown {
   from {
+    transform: translateY(-75%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
     transform: translateY(-75%);
   }
 }

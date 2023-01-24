@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import Button from "./Button";
 
 import "./NavBar.css";
 
@@ -10,9 +11,9 @@ const NavBar = () => {
   return (
     <nav>
       <div>
-        <Link to="/game/">Join</Link>
-        <Link to="/profile/">Profile</Link>
-        <Link to="/achievements/">Achievements</Link>
+        <Button url="/game/" name="Join" />
+        <Button url="/profile/" name="Profile" />
+        <Button url="/achievements/" name="Achievements" />
       </div>
     </nav>
   );

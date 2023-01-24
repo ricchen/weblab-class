@@ -37,7 +37,6 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <div className="skeleton-button-shell">
         {userId ? <Button url="/start/" name="START" /> : null}
       </div>
-      <Button url="/start/" name="hello" /> {/*example of button component */}
     </>
   );
 };

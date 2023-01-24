@@ -19,7 +19,7 @@ const Button = ({ url, name }) => {
 
           setTimeout(() => {
             window.location.href = target;
-          }, 1400);
+          }, 1200);
         }}
       >
         {name}

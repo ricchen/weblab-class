@@ -3,6 +3,7 @@ import { socket } from "../../client-socket.js";
 import { get, post } from "../../utilities.js";
 import { drawCanvas } from "../../canvasManager";
 import { keyDown, keyUp } from "../../input";
+import { SlideOut } from "../modules/Transition";
 
 import "../../utilities.css";
 
@@ -49,6 +50,7 @@ const Game = (props) => {
 
   return (
     <>
+      <SlideOut />
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
         <canvas ref={canvasRef} width="500" height="500" />

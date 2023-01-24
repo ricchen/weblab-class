@@ -6,7 +6,7 @@ const Start = (props) => {
   return (
     <>
       <SlideOut />
-      <NavBar />
+      <NavBar userId={props.userId} />
       <div>START GAME</div>
     </>
   );

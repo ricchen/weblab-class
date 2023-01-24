@@ -21,11 +21,10 @@ const Profile = (props) => {
       </>
     );
   } else {
-    console.log(user.pfp);
     return (
       <>
         <SlideOut />
-        <NavBar />
+        <NavBar userId={props.userId} />
         <div>profile</div>
         <div>{user.name}</div>
         <img src={user ? user.pfp : ""}></img>

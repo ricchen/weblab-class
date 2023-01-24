@@ -60,7 +60,7 @@ const App = () => {
           <Start path="/start/" userId={userId} />
           <Game path="/game/" userId={userId} />
           <Achievements path="/achievements/" userId={userId} />
-          <Profile path="/profile" userId={userId} />
+          <Profile path="/profile/:userId" />
           <NotFound default />
         </Router>
       </div>

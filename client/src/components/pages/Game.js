@@ -53,7 +53,7 @@ const Game = (props) => {
       <SlideOut />
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
-        <canvas ref={canvasRef} width="500" height="500" />
+        <canvas ref={canvasRef} width="5000" height="5000" />
         {loginModal}
       </div>
     </>

@@ -5,3 +5,11 @@ export const socket = socketIOClient(endpoint);
 socket.on("connect", () => {
   post("/api/initsocket", { socketid: socket.id });
 });
+
+export const move = (dir) => {
+  socket.emit("move", dir);
+};
+
+export const stopMove = (dir) => {
+  socket.emit("stopMove", dir);
+};

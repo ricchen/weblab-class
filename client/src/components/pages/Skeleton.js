@@ -15,7 +15,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <SlideOut />
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
         <div className="skeleton-title relative">
-          <h1 className="skeleton-lightpink">EXAMPLE NAME</h1>
+          <h1 className="skeleton-lightpink">MAIZE</h1>
         </div>
 
         <div className="skeleton-google relative">

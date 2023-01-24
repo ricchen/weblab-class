@@ -11,4 +11,11 @@
 
 .NavBar-slider:hover {
   transform: translateY(0%);
+  animation-name: slideDown;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-75%);
+  }
 }

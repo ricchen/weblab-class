@@ -10,12 +10,11 @@ const NavBar = () => {
   return (
     <>
       <div className="NavBar-slider">
-        <nav className="NavBar-buttons">
-          <Button url="/game/" name="Join" />
-          <Button url="/profile/" name="Profile" />
-          <Button url="/achievements/" name="Achievements" />
-        </nav>
+        <nav className="NavBar-buttons"></nav>
       </div>
+      <Button url="/game/" name="Join" />
+      <Button url="/profile/" name="Profile" />
+      <Button url="/achievements/" name="Achievements" />
     </>
   );
 };

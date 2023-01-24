@@ -1,18 +1,17 @@
 .button {
-  font-size: 35px;
   background: var(--lightpink);
   color: var(--white);
   padding: 15px 45px 15px;
   text-decoration: none;
   margin: 20px;
   justify-content: center;
-  box-shadow: -8px 8px var(--darkpink), -16px 16px black;
+  box-shadow: -0.2em 0.2em var(--darkpink), -0.4em 0.4em black;
   transform: skewX(10deg);
   transition: 0.3s ease-in;
 }
 
 .button:hover {
-  box-shadow: -16px 16px var(--darkpink), -24px 24px black;
+  box-shadow: -0.4em 0.4em var(--darkpink), -0.6em 0.6em black;
   transform: scale(1.05) skewX(10deg);
 }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "@reach/router";
 import Button from "./Button";
 
 import "./NavBar.css";
@@ -9,13 +8,15 @@ import "./NavBar.css";
  */
 const NavBar = () => {
   return (
-    <nav>
-      <div>
-        <Button url="/game/" name="Join" />
-        <Button url="/profile/" name="Profile" />
-        <Button url="/achievements/" name="Achievements" />
+    <>
+      <div className="NavBar-slider">
+        <nav className="NavBar-buttons">
+          <Button url="/game/" name="Join" />
+          <Button url="/profile/" name="Profile" />
+          <Button url="/achievements/" name="Achievements" />
+        </nav>
       </div>
-    </nav>
+    </>
   );
 };
 

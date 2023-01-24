@@ -66,11 +66,13 @@
   animation-name: slideIn;
   animation-timing-function: ease-in-out;
   opacity: 0;
+  overflow: visible;
+  transform: translateY(0%);
 }
 
 .slideOut {
   position: fixed;
-  height: 150%;
+  height: 150vh !important;
   bottom: 0px;
   left: 0;
   right: 0;

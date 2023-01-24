@@ -1,0 +1,57 @@
+.Profile-picture-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.Profile-picture {
+  position: absolute;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  top: 50%;
+  margin-top: 80px;
+  border: 0.5rem solid var(--lightpink);
+}
+
+.Profile-picture:hover {
+  animation-name: shadowcircle;
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shadowcircle {
+  from {
+    box-shadow: 0 0.2em var(--darkpink), 0 0.4em black;
+  }
+  12.5% {
+    box-shadow: 0.2em 0.2em var(--darkpink), 0.4em 0.4em black;
+  }
+  25% {
+    box-shadow: 0.2em 0 var(--darkpink), 0.4em 0 black;
+    transform: scale(1.05);
+  }
+  37.5% {
+    box-shadow: 0.2em -0.2em var(--darkpink), 0.4em -0.4em black;
+  }
+  50% {
+    box-shadow: 0 -0.2em var(--darkpink), 0 -0.4em black;
+    transform: scale(1.05);
+  }
+  62.5% {
+    box-shadow: -0.2em -0.2em var(--darkpink), -0.4em -0.4em black;
+  }
+  75% {
+    box-shadow: -0.2em 0 var(--darkpink), -0.4em 0 black;
+    transform: scale(1.05);
+  }
+  87.5% {
+    box-shadow: -0.2em 0.2em var(--darkpink), -0.4em 0.4em black;
+  }
+  to {
+    box-shadow: 0 0.2em var(--darkpink), 0 0.4em black;
+  }
+}

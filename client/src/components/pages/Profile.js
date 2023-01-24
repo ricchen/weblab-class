@@ -3,6 +3,7 @@ import NavBar from "../modules/NavBar.js";
 
 import { get } from "../../utilities";
 import { SlideOut } from "../modules/Transition.js";
+import "./Profile.css";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
@@ -24,10 +25,11 @@ const Profile = (props) => {
     return (
       <>
         <SlideOut />
-        <NavBar userId={props.userId} />
-        <div>profile</div>
+        <div className="wow">profile</div>
         <div>{user.name}</div>
-        <img src={user ? user.pfp : ""}></img>
+        <div className="Profile-picture-container">
+          <img src={user ? user.pfp : ""} className="Profile-picture"></img>
+        </div>
       </>
     );
   }

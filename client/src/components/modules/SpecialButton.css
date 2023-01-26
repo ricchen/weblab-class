@@ -1,5 +1,7 @@
 .Special-container {
   display: flex;
+  background-color: white;
+  flex-direction: column;
 }
 
 .Special-button {
@@ -19,7 +21,26 @@
 span {
   display: absolute;
   background-color: green;
-  width: 3em;
+  width: 50%;
   height: 3em;
-  top: 50px;
+}
+
+span:nth-child(1) {
+  --n: 1;
+  background-color: green;
+}
+
+span:nth-child(2) {
+  --n: 2;
+  background-color: purple;
+}
+
+span:nth-child(3) {
+  --n: 3;
+  background-color: red;
+}
+
+span:nth-child(4) {
+  --n: 4;
+  background-color: blue;
 }

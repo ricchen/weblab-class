@@ -10,25 +10,29 @@ const SpecialButton = ({ url, name }) => {
   return (
     <>
       <div className="Special-container">
-        <Link
-          to={url}
-          className="Special-button"
-          onClick={(e) => {
-            setIsToggled(!isToggled);
-            e.preventDefault();
-            let target = e.target.href;
+        <li>
+          <Link
+            to={url}
+            className="Special-button"
+            onClick={(e) => {
+              setIsToggled(!isToggled);
+              e.preventDefault();
+              let target = e.target.href;
 
-            setTimeout(() => {
-              window.location.href = target;
-            }, 1200);
-          }}
-        >
-          {name}
-        </Link>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+              setTimeout(() => {
+                window.location.href = target;
+              }, 1200);
+            }}
+          >
+            {name}
+          </Link>
+        </li>
+        <li>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </li>
       </div>
 
       {isToggled && <SlideIn />}

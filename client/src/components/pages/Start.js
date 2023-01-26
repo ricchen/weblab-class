@@ -59,7 +59,7 @@ const Start = (props) => {
             </Link>
           </div>
           <div className="Start-navbar"></div>
-          <NavBar />
+          <NavBar userId={props.userId} />
         </div>
 
         {isToggled && <SlideIn />}

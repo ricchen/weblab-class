@@ -13,24 +13,37 @@ const NavBar = () => {
   return (
     <>
       <div className="NavBar-container">
-        <div className="NavBar-subcontainer green"></div>
-        <div className="NavBar-subcontainer red">
-          <Link
-            className="NavBar-button"
-            to="/achievements/"
-            onClick={(e) => {
-              setIsToggled(!isToggled);
-              e.preventDefault();
-              let target = e.target.href;
+        <Link
+          className="NavBar-button"
+          to="/achievements/"
+          onClick={(e) => {
+            setIsToggled(!isToggled);
+            e.preventDefault();
+            let target = e.target.href;
 
-              setTimeout(() => {
-                window.location.href = target;
-              }, 1200);
-            }}
-          >
-            ACHIEVEMENTS
-          </Link>
-        </div>
+            setTimeout(() => {
+              window.location.href = target;
+            }, 1200);
+          }}
+        >
+          PROFILE
+        </Link>
+
+        <Link
+          className="NavBar-button"
+          to="/achievements/"
+          onClick={(e) => {
+            setIsToggled(!isToggled);
+            e.preventDefault();
+            let target = e.target.href;
+
+            setTimeout(() => {
+              window.location.href = target;
+            }, 1200);
+          }}
+        >
+          ACHIEVEMENTS
+        </Link>
       </div>
 
       {isToggled && <SlideIn />}

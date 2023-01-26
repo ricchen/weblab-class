@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../modules/NavBar.js";
 
 import { get } from "../../utilities";
 import { SlideOut } from "../modules/Transition.js";
@@ -28,7 +27,11 @@ const Profile = (props) => {
         <div className="wow">profile</div>
         <div>{user.name}</div>
         <div className="Profile-picture-container">
-          <img src={user ? user.pfp : ""} className="Profile-picture"></img>
+          <img
+            src={user ? user.pfp : ""}
+            className="Profile-picture"
+            referrerpolicy="no-referrer"
+          ></img>
         </div>
       </>
     );

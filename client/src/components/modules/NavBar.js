@@ -9,7 +9,7 @@ import "./NavBar.css";
 
 //THIS NAVBAR IS NOT UNIVERSAL FOR EACH PAGE!! SPECIALIZED FOR START PAGE
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ const NavBar = () => {
       <div className="NavBar-container">
         <Link
           className="NavBar-button"
-          to="/achievements/"
+          to={`/profile/${props.userId}`}
           onClick={(e) => {
             setIsToggled(!isToggled);
             e.preventDefault();

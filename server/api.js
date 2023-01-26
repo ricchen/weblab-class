@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Room = require("./models/gameRoom");
 
 // import authentication library
 const auth = require("./auth");
@@ -49,6 +50,47 @@ router.get("/user", (req, res) => {
   });
 });
 
+router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
+  Room.findOne({ room_id: req.body.roomId }).then((room) => {
+    if (room) {
+      res.send({ msg: "Room already exists" });
+    } else {
+      const room = new Room({
+        room_id: req.body.roomId,
+        players: [req.user._id],
+      });
+      room.save().then(() => res.send({ msg: "Success" }));
+    }
+  });
+});
+
+router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
+  //roomId
+  Room.findOne({ room_id: req.body.roomId }).then((room) => {
+    if (room) {
+      if (room.players.length < 2) {
+        Room.replaceOne(
+          { room_id: req.body.roomId },
+          { room_id: req.body.roomId, players: room.players.concat([req.user._id]) }
+        ).then(() => res.send({ msg: "Success" }));
+      } else {
+        res.send({ msg: "Room Full" });
+      }
+    } else {
+      res.send({ msg: "Room Not Found" });
+    }
+  });
+});
+
+router.get("/verifyRoom", auth.ensureLoggedIn, (req, res) => {
+  Room.findOne({ room_id: req.query.roomId }).then((room) => {
+    if (room && room.players.includes(req.user._id)) {
+      res.send({ msg: "ok" });
+    } else {
+      res.send({ msg: "bad" });
+    }
+  });
+});
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Start from "./pages/Start.js";
+import Join from "./pages/Join.js";
 import Game from "./pages/Game.js";
 import Profile from "./pages/Profile.js";
 import Achievements from "./pages/Achievements.js";
@@ -59,7 +60,8 @@ const App = () => {
             userId={userId}
           />
           <Start path="/start/" userId={userId} />
-          <Game path="/game/" userId={userId} />
+          <Join path="/join/" userId={userId} />
+          <Game path="/game/:roomId" userId={userId} />
           <Achievements path="/achievements/" userId={userId} />
           <Profile path="/profile/:userId" />
           <Lobby path="/lobby/" />

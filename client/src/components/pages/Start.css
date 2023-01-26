@@ -1,0 +1,52 @@
+.gold {
+  background-color: gold;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.Start-container {
+  display: flex;
+}
+
+.Start-left-container {
+  flex: 1;
+  height: 100vh;
+}
+
+.Start-right-container {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Start-navbar {
+  flex: 0.105;
+  height: 100vh;
+}
+
+.Start-textbox {
+  text-align: center;
+  width: 80%;
+  height: 4em;
+  margin-bottom: 3em;
+  border-radius: none;
+  box-sizing: border-box;
+}
+
+.Start-button {
+  background: var(--lightpink);
+  color: var(--white);
+  text-decoration: none;
+  border: 0.2em solid black;
+  text-align: center;
+  vertical-align: middle;
+}

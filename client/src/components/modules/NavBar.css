@@ -1,3 +1,8 @@
+.NavBar-container1 {
+  position: relative;
+  right: 40px;
+}
+
 .NavBar-slider {
   position: fixed;
   height: 20%;

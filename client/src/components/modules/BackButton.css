@@ -1,0 +1,24 @@
+.back-button {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  background: var(--lightpink);
+  color: var(--white);
+  padding: 15px 45px 15px;
+  text-decoration: none;
+  margin: 20px;
+  justify-content: center;
+  box-shadow: -0.2em 0.2em var(--darkpink), -0.4em 0.4em black;
+  transform: skewX(10deg);
+  transition: 0.3s ease-in;
+}
+
+.back-button:hover {
+  box-shadow: -0.4em 0.4em var(--darkpink), -0.6em 0.6em black;
+  transform: scale(1.05) skewX(10deg);
+}
+
+.back-button-shell {
+  display: flex;
+  justify-content: center;
+}

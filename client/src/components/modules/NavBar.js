@@ -7,6 +7,8 @@ import { useState } from "react";
 
 import "./NavBar.css";
 
+//THIS NAVBAR IS NOT UNIVERSAL FOR EACH PAGE!! SPECIALIZED FOR START PAGE
+
 const NavBar = () => {
   const [isToggled, setIsToggled] = useState(false);
 

@@ -9,6 +9,7 @@ import Button from "../modules/Button";
 
 import "./Start.css";
 import NavBar from "../modules/NavBar";
+import SpecialButton from "../modules/SpecialButton";
 
 const Start = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -21,6 +22,7 @@ const Start = (props) => {
             <Button url={`/profile/${props.userId}`} name="Profile" />
             <Button url="/achievements/" name="Achievements" />
             <Button url="/game/:roomId" name="Game" />
+            <SpecialButton url="/" name="im special" />
           </div>
           <div className="Start-right-container">
             <input type="text" placeholder="NAME" className="Start-textbox"></input>

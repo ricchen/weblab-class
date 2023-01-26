@@ -38,15 +38,17 @@
   width: 80%;
   height: 4em;
   margin-bottom: 3em;
-  border-radius: none;
+  border-radius: 0.5em;
+  border-style: none;
   box-sizing: border-box;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
 }
 
 .Start-button {
   background: var(--lightpink);
   color: var(--white);
   text-decoration: none;
-  border: 0.2em solid black;
-  text-align: center;
-  vertical-align: middle;
+  box-shadow: 0 0.4em var(--darkpink);
+  padding: 1.5em 4em 0em;
 }

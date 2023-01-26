@@ -1,0 +1,25 @@
+.Special-container {
+  display: flex;
+}
+
+.Special-button {
+  text-decoration: none;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  color: white;
+  background-color: var(--lightpink);
+  padding: 0.6em 2.4em 0.6em;
+  width: 10em;
+  text-align: center;
+  border-radius: 0.5em;
+  box-shadow: 0 0.4em var(--darkpink);
+  transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+span {
+  display: absolute;
+  background-color: green;
+  width: 3em;
+  height: 3em;
+  top: 50px;
+}

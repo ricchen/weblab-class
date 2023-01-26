@@ -2,8 +2,8 @@ const { intersect, collisionVector } = require("./collision");
 // MazeBuilder = require("./maze-builder");
 
 /** constants */
-const WIDTH = 100;
-const LENGTH = 100;
+const WIDTH = 20;
+const LENGTH = 20;
 const MAP_LENGTH = 500;
 const MAP_ARRAY_LENGTH = WIDTH;
 const BLOCK_LENGTH = 50;
@@ -68,7 +68,7 @@ const shuffle = (array) => {
 };
 
 const partition = (r1, r2, c1, c2) => {
-  console.log("started the partition");
+  // console.log("started the partition");
   // create partition walls
   // ref: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
 

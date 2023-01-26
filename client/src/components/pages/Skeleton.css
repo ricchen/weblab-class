@@ -7,6 +7,10 @@
   color: var(--darkpink);
 }
 
+.skeleton-container {
+  display: flex;
+}
+
 .skeleton-title {
   top: 30px;
   text-shadow: -8px 8px var(--darkpink), -16px 16px black;

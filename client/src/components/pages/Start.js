@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from "../modules/Button";
 
 import "./Start.css";
+import NavBar from "../modules/NavBar";
 
 const Start = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -18,15 +19,15 @@ const Start = (props) => {
         <div className="Start-container">
           <div className="Start-left-container">
             <Button url={`/profile/${props.userId}`} name="Profile" />
-
             <Button url="/achievements/" name="Achievements" />
+            <Button url="/game/:roomId" name="Game" />
           </div>
           <div className="Start-right-container">
             <input type="text" placeholder="NAME" className="Start-textbox"></input>
             <input type="text" placeholder="GAME CODE" className="Start-textbox"></input>
             <Link
               className="Start-textbox Start-button"
-              to="/lobby/"
+              to="/join/"
               onClick={(e) => {
                 setIsToggled(!isToggled);
                 e.preventDefault();
@@ -56,7 +57,9 @@ const Start = (props) => {
             </Link>
           </div>
           <div className="Start-navbar"></div>
+          <NavBar />
         </div>
+
         {isToggled && <SlideIn />}
 
         <SlideOut />

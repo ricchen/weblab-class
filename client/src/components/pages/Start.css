@@ -49,6 +49,6 @@
   background: var(--lightpink);
   color: var(--white);
   text-decoration: none;
-  box-shadow: 0 0.4em var(--darkpink);
+  box-shadow: 0 0.4em var(--darkpink), 0 0.8em black;
   padding: 1.5em 4em 0em;
 }

@@ -18,45 +18,22 @@ const Start = (props) => {
     <>
       <BrowserRouter>
         <div className="Start-container">
-          <div className="Start-left-container">
-            <Button url={`/profile/${props.userId}`} name="Profile" />
-            <Button url="/achievements/" name="Achievements" />
-            <Button url="/game/:roomId" name="Game" />
-            <SpecialButton url="/" name="im special" />
-          </div>
+          <div className="Start-left-container"></div>
           <div className="Start-right-container">
             <input type="text" placeholder="NAME" className="Start-textbox"></input>
             <input type="text" placeholder="GAME CODE" className="Start-textbox"></input>
-            <Link
+            <SpecialButton
+              url="/join/"
+              name="JOIN LOBBY"
               className="Start-textbox Start-button"
-              to="/join/"
-              onClick={(e) => {
-                setIsToggled(!isToggled);
-                e.preventDefault();
-                let target = e.target.href;
-
-                setTimeout(() => {
-                  window.location.href = target;
-                }, 1200);
-              }}
-            >
-              JOIN LOBBY
-            </Link>
-            <Link
+              style={{ marginBottom: "3em", width: "80%" }}
+            />
+            <SpecialButton
+              url="/lobby/"
+              name="CREATE LOBBY"
               className="Start-textbox Start-button"
-              to="/lobby/"
-              onClick={(e) => {
-                setIsToggled(!isToggled);
-                e.preventDefault();
-                let target = e.target.href;
-
-                setTimeout(() => {
-                  window.location.href = target;
-                }, 1200);
-              }}
-            >
-              CREATE LOBBY
-            </Link>
+              style={{ width: "80%" }}
+            />
           </div>
           <div className="Start-navbar"></div>
           <NavBar userId={props.userId} />

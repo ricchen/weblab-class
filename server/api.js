@@ -22,6 +22,8 @@ const router = express.Router();
 //initialize socket
 const socketManager = require("./server-socket");
 
+const gameLogic = require("./game-logic.js");
+
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -59,7 +61,11 @@ router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
         room_id: req.body.roomId,
         players: [req.user._id],
       });
-      room.save().then(() => res.send({ msg: "Success" }));
+      room
+        .save()
+        .then(gameLogic.createRoom(req.body.roomId))
+        .then(gameLogic.spawnPlayer(req.body.roomId, req.user._id))
+        .then(res.send({ msg: "Success" }));
     }
   });
 });
@@ -72,7 +78,11 @@ router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
         Room.replaceOne(
           { room_id: req.body.roomId },
           { room_id: req.body.roomId, players: room.players.concat([req.user._id]) }
-        ).then(() => res.send({ msg: "Success" }));
+        )
+          .then(() => {
+            gameLogic.spawnPlayer(req.body.roomId, req.user._id);
+          })
+          .then(res.send({ msg: "Success" }));
       } else {
         res.send({ msg: "Room Full" });
       }
@@ -91,6 +101,33 @@ router.get("/verifyRoom", auth.ensureLoggedIn, (req, res) => {
     }
   });
 });
+
+router.post("/removePlayer", auth.ensureLoggedIn, (req, res) => {
+  Room.findOne({ room_id: req.body.roomId }).then((room) => {
+    if (room) {
+      if (room.players[0] === req.user._id) {
+        if (room.players.length === 1) {
+          Room.deleteOne({ room_id: req.body.roomId }).then(res.send({ msg: "Deleted Room" }));
+        } else {
+          Room.replaceOne(
+            { room_id: req.body.roomId },
+            { room_id: req.body.roomId, players: room.players.shift() }
+          ).then(res.send({ msg: "Removed Player" }));
+        }
+      } else {
+        if (room.players[1] === req.user._id) {
+          Room.replaceOne(
+            { room_id: req.body.roomId },
+            { room_id: req.body.roomId, players: room.players.pop() }
+          ).then(res.send({ msg: "Removed Player" }));
+        }
+      }
+    } else {
+      res.send({ msg: "Room not found" });
+    }
+  });
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

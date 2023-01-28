@@ -34,7 +34,7 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    drawCanvas(update, canvasRef);
+    drawCanvas(update, canvasRef, props.userId, props.roomId);
   };
 
   // display text if the player is not logged in
@@ -48,7 +48,7 @@ const Game = (props) => {
       <SlideOut />
       <div>
         {/* important: canvas needs id to be referenced by canvasManager */}
-        {validJoin ? <canvas ref={canvasRef} width="1000" height="1000" /> : <div>bad join</div>}
+        {validJoin ? <canvas ref={canvasRef} width="500" height="500" /> : <div>bad join</div>}
         {loginModal}
       </div>
     </>

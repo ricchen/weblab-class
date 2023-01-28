@@ -27,8 +27,9 @@ const drawPlayer = (context, x, y, color) => {
 };
 
 /** main draw */
-export const drawCanvas = (drawState, canvasRef) => {
+export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
   // use canvas reference of canvas element to get reference to canvas object
+  let drawState = allGames[gameId];
   canvas = canvasRef.current;
   if (!canvas) return;
   const context = canvas.getContext("2d");
@@ -37,17 +38,22 @@ export const drawCanvas = (drawState, canvasRef) => {
   context.fillStyle = "black";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
+  let camera_x;
+  let camera_y;
+  let p = drawState.players[userId];
+  camera_x = Math.min(Math.max(0, p.position.x + 20 - 250), 750);
+  camera_y = Math.min(Math.max(0, p.position.y + 20 - 250), 750);
   for (let row in drawState.map) {
     for (let col in drawState.map[row]) {
       if (drawState.map[row][col] == "wall") {
-        context.fillStyle = "white";
-        context.fillRect(col, row, 50, 50);
+        context.fillStyle = drawState.color;
+        context.fillRect(col - camera_x, row - camera_y, 50, 50);
       }
     }
   }
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x, p.position.y, "red");
+    drawPlayer(context, p.position.x - camera_x, p.position.y - camera_y, "red");
   });
 };

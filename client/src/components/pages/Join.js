@@ -24,7 +24,9 @@ const Join = (props) => {
       const body = { roomId: code };
       post("/api/createRoom", body).then((log) => {
         setMessage(log.msg);
-        if (log.msg == "Success") setCode(code);
+        if (log.msg == "Success") {
+          setCode(code);
+        }
       });
     };
 
@@ -38,7 +40,9 @@ const Join = (props) => {
       const body = { roomId: code };
       post("/api/joinRoom", body).then((log) => {
         setMessage(log.msg);
-        if (log.msg == "Success") setCode(code);
+        if (log.msg == "Success") {
+          setCode(code);
+        }
       });
     };
 

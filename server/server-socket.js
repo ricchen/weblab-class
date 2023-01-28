@@ -10,7 +10,7 @@ const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 const sendGameState = () => {
-  io.emit("update", gameLogic.gameState);
+  io.emit("update", gameLogic.allGames);
 };
 
 const startRunningGame = () => {
@@ -33,7 +33,6 @@ const addUser = (user, socket) => {
 
   userToSocketMap[user._id] = socket;
   socketToUserMap[socket.id] = user;
-  gameLogic.spawnPlayer(user._id);
 };
 
 const removeUser = (user, socket) => {

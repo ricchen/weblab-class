@@ -14,15 +14,13 @@ const SpecialButton = ({ url, name, style, click }) => {
         className="Special-button"
         style={style}
         onClick={(e) => {
-          if (click()) {
-            setIsToggled(!isToggled);
-            e.preventDefault();
-            let target = e.target.href;
+          setIsToggled(!isToggled);
+          e.preventDefault();
+          let target = e.target.href;
 
-            setTimeout(() => {
-              window.location.href = target;
-            }, 1200);
-          }
+          setTimeout(() => {
+            window.location.href = target;
+          }, 1200);
         }}
       >
         {name}

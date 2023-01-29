@@ -13,15 +13,18 @@
 
 .skeleton-title {
   top: 30px;
-  text-shadow: -8px 8px var(--darkpink), -16px 16px black;
+  text-shadow: 0 8px var(--darkpink), 0 16px black;
   text-align: center;
   font-size: 60px;
   letter-spacing: 0.2em;
   transition: 0.3s ease-in;
+  color: var(--lightpink);
 }
 
 .skeleton-title:hover {
-  text-shadow: -10px 10px var(--darkpink), -18px 18px black;
+  color: var(--darkerpalepink);
+  text-shadow: 0 10px var(--palepink), 0 18px black;
+  transform: scale(1.05);
 }
 
 .skeleton-google {

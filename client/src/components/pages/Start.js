@@ -93,7 +93,13 @@ const Start = (props) => {
             />
           </div>
           <div className="Start-navbar"></div>
+          <NavBar
+            userId={props.userId}
+            name1="profile"
             name2="achievements"
+            url1="/profile/"
+            url2="/achievements/"
+          />
         </div>
 
         {isToggled && <SlideIn />}

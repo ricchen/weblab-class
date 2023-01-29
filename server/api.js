@@ -64,7 +64,7 @@ router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
       room
         .save()
         .then(gameLogic.createRoom(req.body.roomId))
-        .then(gameLogic.spawnPlayer(req.body.roomId, req.user._id))
+        .then(socketManager.addUserToRoom(req.body.roomId, req.user._id))
         .then(res.send({ msg: "Success" }));
     }
   });
@@ -80,7 +80,7 @@ router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
           { room_id: req.body.roomId, players: room.players.concat([req.user._id]) }
         )
           .then(() => {
-            gameLogic.spawnPlayer(req.body.roomId, req.user._id);
+            socketManager.addUserToRoom(req.body.roomId, req.user._id);
           })
           .then(res.send({ msg: "Success" }));
       } else {
@@ -92,6 +92,10 @@ router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
   });
 });
 
+router.get("/activeUsers", (req, res) => {
+  res.send(gameLogic.userToGameMap);
+});
+
 router.get("/verifyRoom", auth.ensureLoggedIn, (req, res) => {
   Room.findOne({ room_id: req.query.roomId }).then((room) => {
     if (room && room.players.includes(req.user._id)) {
@@ -100,6 +104,13 @@ router.get("/verifyRoom", auth.ensureLoggedIn, (req, res) => {
       res.send({ msg: "bad" });
     }
   });
+});
+
+router.post("/startGame", auth.ensureLoggedIn, (req, res) => {
+  if (req.body.roomId) {
+    socketManager.startGame(req.body.roomId);
+    res.send({ msg: "ok" });
+  } else res.send({ msg: "bad" });
 });
 
 router.post("/removePlayer", auth.ensureLoggedIn, (req, res) => {
@@ -126,6 +137,21 @@ router.post("/removePlayer", auth.ensureLoggedIn, (req, res) => {
       res.send({ msg: "Room not found" });
     }
   });
+});
+
+router.post("/addStats", (req, res) => {
+  if (req.body.winner) {
+    User.findById(req.body.winner).then((user) => {
+      User.findByIdAndUpdate(req.body.winner, { wins: user.wins + 1 });
+      console.log(user);
+    });
+  }
+  if (req.body.loser) {
+    User.findById(req.body.loser).then((user) => {
+      User.findByIdAndUpdate(req.body.loser, { losses: user.losses + 1 });
+      console.log(user);
+    });
+  }
 });
 
 // anything else falls to this "not found" case

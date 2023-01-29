@@ -48,6 +48,9 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
       if (drawState.map[row][col] == "wall") {
         context.fillStyle = drawState.color;
         context.fillRect(col - camera_x, row - camera_y, 50, 50);
+      } else if (drawState.map[row][col] == "win") {
+        context.fillStyle = "yellow";
+        context.fillRect(col - camera_x, row - camera_y, 50, 50);
       }
     }
   }

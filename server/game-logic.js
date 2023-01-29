@@ -1,4 +1,4 @@
-const { collisionVector } = require("./collision");
+const { intersect, collisionVector } = require("./collision");
 // MazeBuilder = require("./maze-builder");
 
 /** constants */
@@ -9,7 +9,8 @@ const MAP_ARRAY_LENGTH = WIDTH;
 const BLOCK_LENGTH = 50;
 const INITIAL_RADIUS = 20;
 const PLAYER_SPEED = 10;
-const colors = ["blue", "green", "yellow", "purple", "orange", "silver"]; // colors to use for players
+const WINNING_SCORE = 1;
+const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 
 const userToGameMap = {}; // maps user ID to a
 
@@ -19,7 +20,7 @@ const allGames = {};
 
 const mapArray = [
   "B.BBBBBBBB",
-  "B.B...B...",
+  "B.B...B..W",
   "B.B.B.B.BB",
   "B.B.B.B.BB",
   "B.B.B.B.BB",
@@ -41,6 +42,18 @@ const findWalls = (array) => {
   }
   return wallCoords;
 };
+
+const findWin = (array) => {
+  const winCoords = [];
+  for (var j = 0; j < MAP_ARRAY_LENGTH; j++) {
+    for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
+      if (array[j][i] == "W") {
+        winCoords.push({ x: 50 * i, y: 50 * j });
+      }
+    }
+  }
+  return winCoords;
+};
 const arrayToMap = (array) => {
   const map = {};
   for (var j = 0; j < MAP_ARRAY_LENGTH; j++) {
@@ -48,6 +61,8 @@ const arrayToMap = (array) => {
     for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
       if (array[j][i] == "B") {
         row[50 * i] = "wall";
+      } else if (array[j][i] == "W") {
+        row[50 * i] = "win";
       } else {
         row[50 * i] = "empty";
       }
@@ -62,6 +77,7 @@ const createRoom = (gameId) => {
     players: {},
     map: arrayToMap(mapArray),
     walls: findWalls(mapArray),
+    win: findWin(mapArray),
     color: colors[Math.floor(Math.random() * colors.length)],
   };
 };
@@ -73,14 +89,16 @@ const spawnPlayer = (gameId, id) => {
   gameState.players[id] = {
     position: { x: 50, y: 50 },
     velocity: { x: 0, y: 0 },
+    score: 0,
   };
-  userToGameMap[id] = gameId;
 };
 
 const updateGameState = () => {
   Object.keys(allGames).forEach((gameId) => {
+    checkWin(gameId);
     updatePlayerPositions(gameId);
     detectCollisions(gameId);
+    checkScorePoint(gameId);
   });
 };
 
@@ -91,7 +109,6 @@ const removePlayer = (id) => {
   if (gameState.players[id] != undefined) {
     delete gameState.players[id];
   }
-  delete userToGameMap[id];
 };
 
 const movePlayer = (id, dir) => {
@@ -165,8 +182,61 @@ const detectCollisions = (gameId) => {
   });
 };
 
+const checkScorePoint = (gameId) => {
+  let gameState = allGames[gameId];
+  Object.keys(gameState.players).forEach((id) => {
+    if (gameState.players[id] != undefined) {
+      gameState.win.forEach((win) => {
+        let hasScored = intersect(
+          gameState.players[id].position,
+          40,
+          40,
+          win,
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        if (hasScored) {
+          gameState.players[id].score += 1;
+          console.log(id);
+          console.log("scored");
+          console.log(gameState.players[id].score);
+          startNewMap(gameId);
+          return;
+        }
+      });
+    }
+  });
+};
+
+const startNewMap = (gameId) => {
+  let gameState = allGames[gameId];
+  gameState.map = arrayToMap(mapArray);
+  gameState.walls = findWalls(mapArray);
+  gameState.win = findWin(mapArray);
+  gameState.color = colors[Math.floor(Math.random() * colors.length)];
+  resetPlayerPositions(gameId);
+};
+
+const resetPlayerPositions = (gameId) => {
+  let gameState = allGames[gameId];
+  Object.keys(gameState.players).forEach((id) => {
+    gameState.players[id].position = { x: 50, y: 50 };
+    gameState.players[id].velocity = { x: 0, y: 0 };
+  });
+};
+
+const checkWin = (gameId) => {
+  let gameState = allGames[gameId];
+  Object.keys(gameState.players).forEach((id) => {
+    if (gameState.players[id].score >= WINNING_SCORE) {
+      gameState.winner = id;
+    }
+  });
+};
+
 module.exports = {
   allGames,
+  userToGameMap,
   createRoom,
   updateGameState,
   spawnPlayer,

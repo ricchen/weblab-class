@@ -40,6 +40,21 @@ const removeUser = (user, socket) => {
   delete socketToUserMap[socket.id];
 };
 
+const addUserToRoom = (roomId, userId) => {
+  if (userId) gameLogic.userToGameMap[userId] = roomId;
+  gameLogic.spawnPlayer(roomId, userId);
+  io.emit("activeUsers", gameLogic.userToGameMap);
+};
+
+const removePlayerFromRoom = (userId) => {
+  if (userId) delete userToGameMap[userId];
+  gameLogic.removePlayer(userId);
+  io.emit("activeUsers", gameLogic.userToGameMap);
+};
+
+const startGame = (roomId) => {
+  if (roomId) io.emit("startGame", roomId);
+};
 module.exports = {
   init: (http) => {
     io = require("socket.io")(http);
@@ -65,6 +80,9 @@ module.exports = {
 
   addUser: addUser,
   removeUser: removeUser,
+  addUserToRoom: addUserToRoom,
+  removePlayerFromRoom: removePlayerFromRoom,
+  startGame: startGame,
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,

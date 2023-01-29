@@ -35,6 +35,8 @@ const Profile = (props) => {
                 referrerpolicy="no-referrer"
               ></img>
             </div>
+            <div>Wins: {user.wins}</div>
+            <div>Losses: {user.losses}</div>
           </div>
           <SlideOut />
         </BrowserRouter>

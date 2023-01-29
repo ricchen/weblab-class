@@ -27,6 +27,8 @@ function getOrCreateUser(user) {
       name: user.name,
       googleid: user.sub,
       pfp: user.picture,
+      wins: 0,
+      losses: 0,
     });
 
     return newUser.save();

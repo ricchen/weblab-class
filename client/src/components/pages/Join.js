@@ -61,7 +61,7 @@ const Join = (props) => {
       <button type="submit" value="Join" onClick={handleJoin}>
         Join
       </button>
-      {code == null ? null : <Redirect exact from="/join/" to={`/game/${code}`} />}
+      {code == null ? null : <Redirect exact from="/join/" to={`/lobby/${code}`} />}
     </>
   );
 };

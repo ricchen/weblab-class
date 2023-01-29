@@ -4,6 +4,8 @@ const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   pfp: String,
+  wins: Number,
+  losses: Number,
 });
 
 // compile model from schema

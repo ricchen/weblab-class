@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./SpecialButton.css";
 import { SlideIn } from "./Transition";
 
-const SpecialButton = ({ url, name, style }) => {
+const SpecialButton = ({ url, name, style, click }) => {
   const [isToggled, setIsToggled] = useState(false);
 
   return (
@@ -14,13 +14,15 @@ const SpecialButton = ({ url, name, style }) => {
         className="Special-button"
         style={style}
         onClick={(e) => {
-          setIsToggled(!isToggled);
-          e.preventDefault();
-          let target = e.target.href;
+          if (click()) {
+            setIsToggled(!isToggled);
+            e.preventDefault();
+            let target = e.target.href;
 
-          setTimeout(() => {
-            window.location.href = target;
-          }, 1200);
+            setTimeout(() => {
+              window.location.href = target;
+            }, 1200);
+          }
         }}
       >
         {name}

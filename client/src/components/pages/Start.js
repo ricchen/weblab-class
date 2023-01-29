@@ -93,7 +93,7 @@ const Start = (props) => {
             />
           </div>
           <div className="Start-navbar"></div>
-          <NavBar userId={props.userId} />
+            name2="achievements"
         </div>
 
         {isToggled && <SlideIn />}

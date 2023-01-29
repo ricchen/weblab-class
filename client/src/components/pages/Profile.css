@@ -1,57 +1,145 @@
-.Profile-picture-container {
-  position: relative;
+.gold {
+  background-color: darkgoldenrod;
+}
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+
+.Profile-container {
   display: flex;
+}
+
+.Profile-left-container {
+  display: flex;
+  flex: 1;
+  height: 100vh;
   justify-content: center;
-  text-align: center;
+}
+
+.Profile-right-container {
+  display: flex;
+  flex: 1.375;
+  height: 100vh;
+  justify-content: center;
+}
+
+.Profile-navbar {
+  flex: 0.125;
+  height: 100vh;
+}
+
+.Profile-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightpink);
+  justify-content: center;
+  align-self: center;
+  width: 90%;
+  height: 85%;
+  border-radius: 1em;
+  box-shadow: 0 0.6em var(--darkpink);
+  animation: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards flipout;
+  transform-style: preserve-3d;
+}
+
+.Profile-panel.Profile-left {
+  margin-left: 2.5vw;
+}
+
+.Profile-panel-clone {
+  position: absolute;
+  left: 18.27%;
+  width: 36vw;
+  top: 7.5%;
+  bottom: 7.5%;
+  border-radius: 1em;
+  background-color: green;
+  z-index: -2;
+  margin: 0 -15% 0;
+  box-shadow: 0 0.6em var(--darkpink);
+  animation: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards flipout;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.Profile-subpanel {
+  display: grid;
+  place-items: center;
+}
+
+.Profile-name {
+  font-weight: bolder;
+  font-size: 2em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: var(--cyan);
+  padding: 0.5em 3em 0.5em;
+  border-radius: 0.3em;
+  margin: 1.3em 0.5em 0;
+  box-shadow: 0 0.1em var(--paleblue);
 }
 
 .Profile-picture {
-  position: absolute;
   border-radius: 50%;
-  height: 200px;
-  width: 200px;
-  top: 50%;
-  margin-top: 80px;
-  border: 0.5rem solid var(--lightpink);
+  height: 19em;
+  width: 19em;
+  border: 0.5em solid var(--cyan);
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.3em var(--paleblue);
 }
 
-.Profile-picture:hover {
-  animation-name: shadowcircle;
-  animation-duration: 0.8s;
+.Profile-panel:hover {
+  transform: scale(1.05);
+}
+
+.Profile-test {
   animation-fill-mode: forwards;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-name: flipin;
 }
 
-@keyframes shadowcircle {
+@keyframes flipin {
   from {
-    box-shadow: 0 0.2em var(--darkpink), 0 0.4em black;
+    transform: rotateX(0deg);
   }
-  12.5% {
-    box-shadow: 0.2em 0.2em var(--darkpink), 0.4em 0.4em black;
-  }
-  25% {
-    box-shadow: 0.2em 0 var(--darkpink), 0.4em 0 black;
-    transform: scale(1.05);
-  }
-  37.5% {
-    box-shadow: 0.2em -0.2em var(--darkpink), 0.4em -0.4em black;
-  }
-  50% {
-    box-shadow: 0 -0.2em var(--darkpink), 0 -0.4em black;
-    transform: scale(1.05);
-  }
-  62.5% {
-    box-shadow: -0.2em -0.2em var(--darkpink), -0.4em -0.4em black;
-  }
-  75% {
-    box-shadow: -0.2em 0 var(--darkpink), -0.4em 0 black;
-    transform: scale(1.05);
-  }
-  87.5% {
-    box-shadow: -0.2em 0.2em var(--darkpink), -0.4em 0.4em black;
-  }
+
   to {
-    box-shadow: 0 0.2em var(--darkpink), 0 0.4em black;
+    transform: rotateX(180deg);
+  }
+}
+
+@keyframes flipout {
+  from {
+    transform: rotateX(180deg);
+  }
+
+  to {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes hover {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes unhover {
+  from {
+    transform: scale(1.05);
+  }
+
+  to {
+    transform: scale(1);
   }
 }

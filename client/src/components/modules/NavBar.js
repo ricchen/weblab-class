@@ -17,7 +17,7 @@ const NavBar = (props) => {
       <div className="NavBar-container">
         <Link
           className="NavBar-button"
-          to={`/profile/${props.userId}`}
+          to={props.url1 + props.userId}
           onClick={(e) => {
             setIsToggled(!isToggled);
             e.preventDefault();
@@ -28,12 +28,12 @@ const NavBar = (props) => {
             }, 1200);
           }}
         >
-          PROFILE
+          {props.name1}
         </Link>
 
         <Link
           className="NavBar-button"
-          to="/achievements/"
+          to={props.url2}
           onClick={(e) => {
             setIsToggled(!isToggled);
             e.preventDefault();
@@ -44,7 +44,7 @@ const NavBar = (props) => {
             }, 1200);
           }}
         >
-          ACHIEVEMENTS
+          {props.name2}
         </Link>
       </div>
 

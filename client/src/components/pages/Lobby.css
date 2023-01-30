@@ -1,0 +1,27 @@
+.gold {
+  background-color: darkgoldenrod;
+}
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+
+.Lobby-container {
+  display: flex;
+  height: 100vh;
+}
+
+.Lobby-subcontainer {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  justify-content: center;
+}
+
+.Lobby-navbar {
+  display: flex;
+  flex: calc(5 / 47.5);
+  height: 100vh;
+}

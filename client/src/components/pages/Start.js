@@ -4,17 +4,56 @@ import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { SlideOut } from "../modules/Transition";
 import { SlideIn } from "../modules/Transition";
-import { Link } from "react-router-dom";
-import Button from "../modules/Button";
-
+import { Redirect } from "@reach/router";
 import "./Start.css";
 import NavBar from "../modules/NavBar";
-import SpecialButton from "../modules/SpecialButton";
-
 import { post } from "../../utilities";
 
 const Start = (props) => {
   const [isToggled, setIsToggled] = useState(false);
+
+  const [value, setValue] = useState("");
+  const [message, setMessage] = useState("");
+  const [code, setCode] = useState(null);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleCreate = (event) => {
+    const createRoom = (code) => {
+      const body = { roomId: code };
+      post("/api/createRoom", body).then((log) => {
+        setMessage(log.msg);
+        if (log.msg == "Success") {
+          setCode(code);
+        }
+      });
+    };
+
+    event.preventDefault();
+    createRoom(value);
+    setValue("");
+  };
+
+  const handleJoin = (event) => {
+    const joinRoom = (code) => {
+      const body = { roomId: code };
+      post("/api/joinRoom", body).then((log) => {
+        setMessage(log.msg);
+        if (log.msg == "Success") {
+          setCode(code);
+        }
+      });
+    };
+
+    event.preventDefault();
+    joinRoom(value);
+    setValue("");
+  };
+
+  // if (isToggled == true && code != null) {
+  // }
 
   return (
     <>
@@ -23,19 +62,31 @@ const Start = (props) => {
           <div className="Start-left-container"></div>
           <div className="Start-right-container">
             <input type="text" placeholder="NAME" className="Start-textbox"></input>
-            <input type="text" placeholder="GAME CODE" className="Start-textbox"></input>
-            <SpecialButton
-              url={`/game/`}
-              name="JOIN LOBBY"
-              className="Start-textbox Start-button"
-              style={{ marginBottom: "3em", width: "80%" }}
-            />
-            <SpecialButton
-              url={`/game/`}
-              name="CREATE LOBBY"
-              className="Start-textbox Start-button"
+            <input
+              type="text"
+              placeholder="ROOM CODE"
+              value={value}
+              onChange={handleChange}
+              className="Start-textbox"
+            ></input>
+            <button
+              type="submit"
+              value="Join"
+              onClick={handleJoin}
+              className="Start-button"
+              style={{ width: "80%", marginBottom: "3em" }}
+            >
+              join lobby
+            </button>
+            <button
+              type="submit"
+              value="Create"
+              onClick={handleCreate}
+              className="Start-button"
               style={{ width: "80%" }}
-            />
+            >
+              create lobby
+            </button>
           </div>
           <div className="Start-navbar"></div>
           <NavBar
@@ -48,6 +99,7 @@ const Start = (props) => {
         </div>
 
         {isToggled && <SlideIn />}
+        {code == null ? null : <Redirect exact from="/start/" to={`/lobby/${code}`} />}
 
         <SlideOut />
       </BrowserRouter>

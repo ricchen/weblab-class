@@ -3,6 +3,7 @@ import { Redirect } from "@reach/router";
 import NavBar from "../modules/NavBar.js";
 
 import { SlideOut } from "../modules/Transition.js";
+import SpecialButton from "../modules/SpecialButton.js";
 
 import { post } from "../../utilities";
 
@@ -17,10 +18,12 @@ const Join = (props) => {
   // called whenever the user types in the new post input box
   const handleChange = (event) => {
     setValue(event.target.value);
+    console.log(value);
   };
 
   const handleCreate = (event) => {
     const createRoom = (code) => {
+      console.log(code);
       const body = { roomId: code };
       post("/api/createRoom", body).then((log) => {
         setMessage(log.msg);

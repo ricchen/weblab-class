@@ -3,9 +3,10 @@ import BackButton from "../modules/BackButton.js";
 import NavBar from "../modules/NavBar.js";
 import { get, post } from "../../utilities.js";
 import { socket } from "../../client-socket.js";
-
 import { SlideOut } from "../modules/Transition.js";
 import { Redirect } from "@reach/router";
+import { BrowserRouter } from "react-router-dom";
+import "./Lobby.css";
 
 const Lobby = (props) => {
   const [usersInLobby, setUsersInLobby] = useState([]);
@@ -66,15 +67,28 @@ const Lobby = (props) => {
   };
   return (
     <>
-      <SlideOut />
-      <div>lobby</div>
-      {usersInLobby}
-      {lobbyFull}
-      {hasStarted ? (
-        <Redirect exact from={`/lobby/${props.roomId}`} to={`/game/${props.roomId}`} />
-      ) : null}
+      <BrowserRouter>
+        {usersInLobby}
+        {lobbyFull}
 
-      <BackButton />
+        <div className="Lobby-container">
+          <div className="Lobby-subcontainer gold"></div>
+          <div className="Lobby-subcontainer red"></div>
+          <div className="Lobby-navbar"></div>
+        </div>
+
+        <NavBar
+          userId={props.userId}
+          name1="profile"
+          name2="rules"
+          url1="/profile/"
+          url2="/achievements/"
+        />
+        {hasStarted ? (
+          <Redirect exact from={`/lobby/${props.roomId}`} to={`/game/${props.roomId}`} />
+        ) : null}
+        <SlideOut />
+      </BrowserRouter>
     </>
   );
 };

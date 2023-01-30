@@ -7,7 +7,9 @@
 }
 
 .NavBar-container {
-  display: absolute;
+  position: absolute;
+  right: 0;
+  top: 0;
   flex-direction: column;
   height: 100vh;
   width: 25vw;

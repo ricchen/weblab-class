@@ -1,4 +1,8 @@
 const { intersect, collisionVector } = require("./collision");
+
+const User = require("./models/user");
+const Room = require("./models/gameRoom");
+
 // MazeBuilder = require("./maze-builder");
 
 /** constants */
@@ -12,7 +16,7 @@ const PLAYER_SPEED = 10;
 const WINNING_SCORE = 1;
 const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 
-const userToGameMap = {}; // maps user ID to a
+const userToGameMap = {}; // maps user ID to Game
 
 /** Utils! */
 
@@ -60,16 +64,30 @@ const arrayToMap = (array) => {
     const row = {};
     for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
       if (array[j][i] == "B") {
-        row[50 * i] = "wall";
+        row[50 * i] = getWallNumber(array, j, i);
       } else if (array[j][i] == "W") {
-        row[50 * i] = "win";
+        row[50 * i] = -1;
       } else {
-        row[50 * i] = "empty";
+        row[50 * i] = 0;
       }
     }
     map[50 * j] = row;
   }
   return map;
+};
+
+const getWallNumber = (array, row, col) => {
+  let sum = 0;
+  const getDir = (r, c) => {
+    if (r >= 0 && r < MAP_ARRAY_LENGTH && c >= 0 && c < MAP_ARRAY_LENGTH && array[r][c] === "B")
+      return 1;
+    else return 0;
+  };
+  sum += getDir(row - 1, col);
+  sum += getDir(row, col + 1) * 2;
+  sum += getDir(row + 1, col) * 4;
+  sum += getDir(row, col - 1) * 8;
+  return sum;
 };
 const createRoom = (gameId) => {
   allGames[gameId] = {
@@ -79,6 +97,7 @@ const createRoom = (gameId) => {
     walls: findWalls(mapArray),
     win: findWin(mapArray),
     color: colors[Math.floor(Math.random() * colors.length)],
+    ongoing: true,
   };
 };
 
@@ -230,7 +249,29 @@ const checkWin = (gameId) => {
   Object.keys(gameState.players).forEach((id) => {
     if (gameState.players[id].score >= WINNING_SCORE) {
       gameState.winner = id;
+      if (gameState.ongoing) addStats(gameId);
+      gameState.ongoing = false;
     }
+  });
+};
+
+const addStats = (gameId) => {
+  let gameState = allGames[gameId];
+  User.findById(gameState.winner).then((user) => {
+    if (user) {
+      User.findByIdAndUpdate(gameState.winner, { wins: user.wins + 1 }).then((user) =>
+        console.log(user)
+      );
+    }
+  });
+  Object.keys(gameState.players).forEach((id) => {
+    User.findById(id).then((user) => {
+      if (user) {
+        User.findByIdAndUpdate(id, { $set: { games: user.games + 1 } }).then((user) =>
+          console.log(user)
+        );
+      }
+    });
   });
 };
 

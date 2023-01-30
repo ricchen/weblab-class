@@ -36,6 +36,8 @@ const Profile = (props) => {
     return (
       <>
         <BrowserRouter>
+          <div>{user.wins}</div>
+          <div>{user.games}</div>
           <div className="Profile-container">
             <div className="Profile-left-container">
               <div

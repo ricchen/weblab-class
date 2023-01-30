@@ -139,20 +139,26 @@ router.post("/removePlayer", auth.ensureLoggedIn, (req, res) => {
   });
 });
 
-router.post("/addStats", (req, res) => {
-  if (req.body.winner) {
-    User.findById(req.body.winner).then((user) => {
-      User.findByIdAndUpdate(req.body.winner, { wins: user.wins + 1 });
-      console.log(user);
-    });
-  }
-  if (req.body.loser) {
-    User.findById(req.body.loser).then((user) => {
-      User.findByIdAndUpdate(req.body.loser, { losses: user.losses + 1 });
-      console.log(user);
-    });
-  }
-});
+// router.post("/addStats", (req, res) => {
+//   if (req.body.winner) {
+//     User.findById(req.body.winner).then((user) => {
+//       if (user) {
+//         User.findByIdAndUpdate(req.body.winner, { wins: user.wins + 1 }).then((user) =>
+//           console.log(user)
+//         );
+//       }
+//     });
+//   }
+//   if (req.body.loser) {
+//     User.findById(req.body.loser).then((user) => {
+//       if (user) {
+//         User.findByIdAndUpdate(req.body.loser, { $set: { losses: user.losses + 1 } }).then((user) =>
+//           console.log(user)
+//         );
+//       }
+//     });
+//   }
+// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

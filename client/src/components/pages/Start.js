@@ -15,53 +15,53 @@ import { post } from "../../utilities";
 
 const Start = (props) => {
   const [isToggled, setIsToggled] = useState(false);
-  const [value, setValue] = useState("");
-  const [code, setCode] = useState(null);
+  // const [value, setValue] = useState("");
+  // const [code, setCode] = useState(null);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // };
 
-  const handleCreate = async (event) => {
-    const createRoom = (code) => {
-      const body = { roomId: code };
-      let valid = false;
-      post("/api/createRoom", body)
-        .then((log) => {
-          if (log.msg == "Success") {
-            console.log("TRUEE");
-            valid = true;
-          }
-        })
-        .then(() => {
-          return valid;
-        });
-    };
+  // const handleCreate = async (event) => {
+  //   const createRoom = (code) => {
+  //     const body = { roomId: code };
+  //     let valid = false;
+  //     post("/api/createRoom", body)
+  //       .then((log) => {
+  //         if (log.msg == "Success") {
+  //           console.log("TRUEE");
+  //           valid = true;
+  //         }
+  //       })
+  //       .then(() => {
+  //         return valid;
+  //       });
+  //   };
 
-    setValue("");
-    return await createRoom(value);
-  };
+  //   setValue("");
+  //   return await createRoom(value);
+  // };
 
-  const handleJoin = async (event) => {
-    const joinRoom = (code) => {
-      const body = { roomId: code };
-      let valid = false;
-      post("/api/joinRoom", body)
-        .then((log) => {
-          if (log.msg == "Success") {
-            console.log("TRUEE");
-            valid = true;
-          }
-        })
-        .then(() => {
-          console.log(valid);
-          return valid;
-        });
-    };
+  // const handleJoin = async (event) => {
+  //   const joinRoom = (code) => {
+  //     const body = { roomId: code };
+  //     let valid = false;
+  //     post("/api/joinRoom", body)
+  //       .then((log) => {
+  //         if (log.msg == "Success") {
+  //           console.log("TRUEE");
+  //           valid = true;
+  //         }
+  //       })
+  //       .then(() => {
+  //         console.log(valid);
+  //         return valid;
+  //       });
+  //   };
 
-    setValue("");
-    return await joinRoom(value);
-  };
+  //   setValue("");
+  //   return await joinRoom(value);
+  // };
 
   return (
     <>
@@ -75,21 +75,18 @@ const Start = (props) => {
               placeholder="GAME CODE"
               className="Start-textbox"
               value={value}
-              onChange={handleChange}
             ></input>
             <SpecialButton
-              url={`/game/${value}`}
+              url={`/game/`}
               name="JOIN LOBBY"
               className="Start-textbox Start-button"
               style={{ marginBottom: "3em", width: "80%" }}
-              click={handleJoin}
             />
             <SpecialButton
-              url={`/game/${value}`}
+              url={`/game/`}
               name="CREATE LOBBY"
               className="Start-textbox Start-button"
               style={{ width: "80%" }}
-              click={handleCreate}
             />
           </div>
           <div className="Start-navbar"></div>

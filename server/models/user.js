@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+mongoose.set("useFindAndModify", false);
 
 const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   pfp: String,
   wins: Number,
-  losses: Number,
+  games: Number,
 });
 
 // compile model from schema

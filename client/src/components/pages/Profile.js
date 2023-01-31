@@ -45,7 +45,8 @@ const Profile = (props) => {
                 <div className="Profile-subpanel" style={{ flex: 4 }}>
                   <img
                     src={user ? user.pfp : ""}
-                    className="Profile-picture"
+                    className={`Profile-picture ${clickClass}`}
+                    onClick={clicked}
                     referrerpolicy="no-referrer"
                   ></img>
                 </div>
@@ -61,7 +62,7 @@ const Profile = (props) => {
             <NavBar
               userId={props.userId}
               name1="home"
-              name2="achievements"
+              name2="tutorial"
               url1="/start/"
               url2="/achievements/"
             />

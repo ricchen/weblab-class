@@ -16,15 +16,15 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
     <>
       <BrowserRouter>
         <SlideOut />
-        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID} className="skeleton-container">
-          <div className="skeleton-title relative">
-            <h1>MAIZE</h1>
+        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID} style={{ backgroundColor: "green" }}>
+          <div className="skeleton-container">
+            <div className="skeleton-title relative">escape the maize</div>
           </div>
 
-          <div className="skeleton-google relative">
+          <div className="skeleton-google-container">
             {userId ? (
               <button
-                className="skeleton-button absolute topright"
+                className="skeleton-button"
                 onClick={() => {
                   googleLogout();
                   handleLogout();
@@ -42,7 +42,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
             <SpecialButton
               url="/start/"
               name="START"
-              style={{ marginBottom: "3em", width: "60%", height: "20%" }}
+              style={{ marginBottom: "1em", width: "50%", height: "15%" }}
             />
           ) : null}
         </div>

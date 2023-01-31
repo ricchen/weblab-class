@@ -50,7 +50,6 @@
 
 .Profile-panel:hover {
   transform: scale(1.02);
-  box-shadow: 0 0.6em var(--medgrey), inset 0 -100em var(--pastelpink);
 }
 
 /* .Profile-panel-clone {
@@ -99,18 +98,18 @@
 
 .Profile-test {
   animation-fill-mode: forwards;
-  animation-duration: 0.7s;
+  animation-duration: 1.4s;
   animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation-name: flipin;
 }
 
 @keyframes flipin {
   from {
-    transform: rotateX(0deg);
+    transform: rotateY(0deg);
   }
 
   to {
-    transform: rotateX(180deg);
+    transform: rotateY(360deg);
   }
 }
 

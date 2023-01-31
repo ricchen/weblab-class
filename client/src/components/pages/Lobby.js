@@ -7,12 +7,15 @@ import { SlideOut } from "../modules/Transition.js";
 import { Redirect } from "@reach/router";
 import { BrowserRouter } from "react-router-dom";
 import "./Lobby.css";
+import SpecialButton from "../modules/SpecialButton.js";
 
 const Lobby = (props) => {
   const [usersInLobby, setUsersInLobby] = useState([]);
   const [validJoin, setValidJoin] = useState(false);
   const [lobbyFull, setLobbyFull] = useState(null);
   const [hasStarted, setHasStarted] = useState(false);
+
+  const [user, setUser] = useState();
 
   useEffect(() => {
     get("/api/activeUsers").then((allUsers) => {
@@ -81,16 +84,18 @@ const Lobby = (props) => {
           <div className="Lobby-subcontainer">
             <div className="Lobby-midpanel">
               <div className="Lobby-text" style={{ marginTop: "2em" }}>
-                lobby name:
+                lobby name: {props.name}
               </div>
-              <div className="Lobby-text">code</div>
+              <div className="Lobby-text">${props.roomId}</div>
             </div>
             <div className="Lobby-midpanel">
               <div className="Lobby-text" style={{ marginTop: "1em" }}>
                 Please wait for 2 players
               </div>
             </div>
-            <div className="Lobby-midpanel"></div>
+            <div className="Lobby-midpanel">
+              <SpecialButton url="/achievements" name="tutorial" />
+            </div>
           </div>
           <div className="Lobby-subcontainer"></div>
           <div className="Lobby-navbar"></div>

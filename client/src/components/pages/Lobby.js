@@ -14,8 +14,7 @@ const Lobby = (props) => {
   const [validJoin, setValidJoin] = useState(false);
   const [lobbyFull, setLobbyFull] = useState(null);
   const [hasStarted, setHasStarted] = useState(false);
-
-  const [user, setUser] = useState();
+  const [userObjs, setUserObjs] = useState({});
 
   useEffect(() => {
     get("/api/activeUsers").then((allUsers) => {
@@ -24,11 +23,13 @@ const Lobby = (props) => {
         Object.keys(allUsers).forEach((userId) => {
           if (allUsers[userId] == props.roomId) {
             users.push(userId);
+            get(`/api/user`, { userid: userId }).then((userObj) => {
+              userObjs[userId] = userObj;
+            });
           }
         });
         setUsersInLobby(users);
       }
-      console.log(allUsers);
     });
   }, []);
 
@@ -50,7 +51,12 @@ const Lobby = (props) => {
     const updateUsers = (allUsers) => {
       let users = [];
       Object.keys(allUsers).forEach((userId) => {
-        if (allUsers[userId] === props.roomId) users.push(userId);
+        if (allUsers[userId] == props.roomId) {
+          users.push(userId);
+          get(`/api/user`, { userid: userId }).then((userObj) => {
+            userObjs[userId] = userObj;
+          });
+        }
       });
       setUsersInLobby(users);
     };
@@ -80,7 +86,13 @@ const Lobby = (props) => {
         {lobbyFull}
 
         <div className="Lobby-container">
-          <div className="Lobby-subcontainer"></div>
+          <div className="Lobby-subcontainer">
+            {userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].name : null}
+            <img
+              src={userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].pfp : ""}
+              referrerpolicy="no-referrer"
+            ></img>
+          </div>
           <div className="Lobby-subcontainer">
             <div className="Lobby-midpanel">
               <div className="Lobby-text" style={{ marginTop: "2em" }}>
@@ -97,7 +109,13 @@ const Lobby = (props) => {
               <SpecialButton url="/tutorial" name="tutorial" />
             </div>
           </div>
-          <div className="Lobby-subcontainer"></div>
+          <div className="Lobby-subcontainer">
+            {userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].name : null}
+            <img
+              src={userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].pfp : ""}
+              referrerpolicy="no-referrer"
+            ></img>
+          </div>
           <div className="Lobby-navbar"></div>
         </div>
 

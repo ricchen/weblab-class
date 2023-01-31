@@ -20,6 +20,13 @@ const startRunningGame = () => {
   }, 1000 / 60); // 60 frames per second
 };
 
+const getActiveUsers = () => {
+  setInterval(() => {
+    io.emit("activeUsers", gameLogic.userToGameMap);
+  }, 1000);
+};
+
+getActiveUsers();
 startRunningGame();
 
 const addUser = (user, socket) => {

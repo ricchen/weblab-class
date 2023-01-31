@@ -22,9 +22,9 @@
 }
 
 .skeleton-title:hover {
-  color: var(--darkerpalepink);
-  text-shadow: 0 10px var(--palepink), 0 18px black;
-  transform: scale(1.05);
+  color: var(--palepink);
+  text-shadow: 0 10px var(--darkerpalepink), 0 18px black;
+  transform: scale(1.03);
 }
 
 .skeleton-google {

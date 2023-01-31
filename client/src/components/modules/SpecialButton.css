@@ -15,7 +15,7 @@
 }
 
 .Special-button:hover {
-  box-shadow: 0 0.4em var(--palepink), 0 0.8em white, inset 50em 0 var(--darkerpalepink);
+  box-shadow: 0 0.4em var(--darkerpalepink), 0 0.8em white, inset 50em 0 var(--palepink);
   color: black;
   transform: scale(1.05);
 }

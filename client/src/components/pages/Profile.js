@@ -36,14 +36,9 @@ const Profile = (props) => {
     return (
       <>
         <BrowserRouter>
-          <div>{user.wins}</div>
-          <div>{user.games}</div>
           <div className="Profile-container">
             <div className="Profile-left-container">
-              <div
-                className={`Profile-panel Profile-left Profile-transition ${clickClass}`}
-                onClick={clicked}
-              >
+              <div className="Profile-panel Profile-left Profile-transition">
                 <div className="Profile-subpanel" style={{ flex: 1 }}>
                   <h1 className="Profile-name">{user.name}</h1>
                 </div>
@@ -55,10 +50,12 @@ const Profile = (props) => {
                   ></img>
                 </div>
               </div>
-              <div className={`Profile-panel-clone ${clickClassClone}`} onClick={clicked}></div>
             </div>
             <div className="Profile-right-container">
-              <div className="Profile-panel Profile-transition"></div>
+              <div className="Profile-panel Profile-transition">
+                <div>wins:{user.wins}</div>
+                <div>games played:{user.games}</div>
+              </div>
             </div>
             <div className="Profile-navbar"></div>
             <NavBar

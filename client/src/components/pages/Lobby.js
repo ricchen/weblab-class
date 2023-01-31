@@ -30,7 +30,12 @@ const Lobby = (props) => {
   }, []);
 
   useEffect(() => {
-    if (usersInLobby.length === 2) setLobbyFull(<button onClick={postStart}>Start Game</button>);
+    if (usersInLobby.length === 2)
+      setLobbyFull(
+        <button onClick={postStart} className="Lobby-button">
+          Start Game
+        </button>
+      );
     else setLobbyFull(null);
   }, [usersInLobby]);
 
@@ -68,12 +73,26 @@ const Lobby = (props) => {
   return (
     <>
       <BrowserRouter>
-        {usersInLobby}
+        {/* {usersInLobby} */}
         {lobbyFull}
 
         <div className="Lobby-container">
-          <div className="Lobby-subcontainer gold"></div>
-          <div className="Lobby-subcontainer red"></div>
+          <div className="Lobby-subcontainer"></div>
+          <div className="Lobby-subcontainer">
+            <div className="Lobby-midpanel">
+              <div className="Lobby-text" style={{ marginTop: "2em" }}>
+                lobby name:
+              </div>
+              <div className="Lobby-text">code</div>
+            </div>
+            <div className="Lobby-midpanel">
+              <div className="Lobby-text" style={{ marginTop: "1em" }}>
+                Please wait for 2 players
+              </div>
+            </div>
+            <div className="Lobby-midpanel"></div>
+          </div>
+          <div className="Lobby-subcontainer"></div>
           <div className="Lobby-navbar"></div>
         </div>
 

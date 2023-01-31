@@ -18,9 +18,10 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
+  --black: black;
   --primary: #396dff;
   --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
+  --darkgrey: #343434;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
   --white: #fff;
@@ -29,8 +30,9 @@
   --paleblue: #314961;
   --cyan: #4e9196;
   --neongreen: #93fca4;
-  --palepink: #ffa4b2;
-  --darkerpalepink: #ffb6c1;
+  --darkerpalepink: #ffa4b2;
+  --palepink: #ffb6c1;
+  --pastelpink: #d8969f;
 
   --xs: 4px;
   --s: 8px;

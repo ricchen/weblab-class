@@ -16,12 +16,109 @@
 .Lobby-subcontainer {
   display: flex;
   flex: 1;
-  height: 100vh;
+  flex-direction: column;
+  background-color: var(--lightpink);
   justify-content: center;
+  align-self: center;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 80%;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  margin-left: 1.5em;
+  border-radius: 1em;
+  box-shadow: 0 0.6em var(--darkpink);
+}
+
+.Lobby-subcontainer:nth-child(3) {
+  margin-right: 3em;
+}
+
+.Lobby-midpanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  margin-top: 2em;
+  border-radius: 1em;
+  box-sizing: border-box;
+  border-style: none;
+}
+
+.Lobby-midpanel:nth-child(1) {
+  margin-top: 3em;
+  background-color: var(--cyan);
+  box-shadow: 0 0.4em var(--paleblue);
+  flex: 1;
+}
+
+.Lobby-midpanel:nth-child(2) {
+  flex: 0.5;
+  background-color: var(--cyan);
+  box-shadow: 0 0.4em var(--paleblue);
+}
+
+.Lobby-midpanel:nth-child(3) {
+  margin-bottom: 3em;
+  background-color: var(--cyan);
+  box-shadow: 0 0.4em var(--paleblue);
+  flex: 1;
+}
+
+.Lobby-text {
+  text-align: center;
+  justify-items: center;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: white;
+}
+
+.Lobby-text:nth-child(1) {
+  text-transform: uppercase;
+  font-size: medium;
+  flex: 0.7;
+}
+
+.Lobby-text:nth-child(2) {
+  text-transform: uppercase;
+  font-size: x-large;
+  flex: 1;
 }
 
 .Lobby-navbar {
   display: flex;
   flex: calc(5 / 47.5);
   height: 100vh;
+}
+
+.Lobby-button {
+  position: absolute;
+  top: 50%;
+  left: 47.5vw;
+  width: 23.2vw;
+  height: 12vh;
+  margin-left: -11.6vw;
+  margin-top: -6vh;
+  text-align: center;
+  text-decoration: none;
+  font-size: large;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: white;
+  background-color: var(--cyan);
+  padding: 1.2em 0 1.2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0.3em var(--paleblue), 0 0.6em black;
+  transition: 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  border-style: none;
+  text-transform: uppercase;
+}
+
+.Lobby-button:hover {
+  box-shadow: 0 0.4em var(--cyan), 0 0.8em var(--paleblue), inset 50em 0 var(--neongreen);
+  color: black;
+  transform: scale(1.05);
 }

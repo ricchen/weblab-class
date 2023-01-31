@@ -41,15 +41,19 @@
   height: 85%;
   border-radius: 1em;
   box-shadow: 0 0.6em var(--darkpink);
-  animation: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards flipout;
-  transform-style: preserve-3d;
+  transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .Profile-panel.Profile-left {
   margin-left: 2.5vw;
 }
 
-.Profile-panel-clone {
+.Profile-panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0.6em var(--medgrey), inset 0 -100em var(--pastelpink);
+}
+
+/* .Profile-panel-clone {
   position: absolute;
   left: 18.27%;
   width: 36vw;
@@ -63,7 +67,7 @@
   animation: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards flipout;
   transform-style: preserve-3d;
   pointer-events: none;
-}
+} */
 
 .Profile-subpanel {
   display: grid;
@@ -91,10 +95,6 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0.3em var(--paleblue);
-}
-
-.Profile-panel:hover {
-  transform: scale(1.05);
 }
 
 .Profile-test {

@@ -7,6 +7,7 @@ import { Redirect } from "@reach/router";
 import "./Start.css";
 import NavBar from "../modules/NavBar";
 import { post } from "../../utilities";
+import img from "../../public/tileset/referenceimage.png";
 
 const Start = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -67,7 +68,7 @@ const Start = (props) => {
               <div className="Start-text">escape the maize!</div>
             </div>
             <div className="Start-panel">
-              <img src={"../../public/tileset/referenceimage.png"} />
+              <img src={img} className="Start-image" />
             </div>
           </div>
           <div className="Start-right-container">

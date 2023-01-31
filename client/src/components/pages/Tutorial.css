@@ -1,0 +1,37 @@
+.gold {
+  background-color: darkgoldenrod;
+}
+.red {
+  background-color: red;
+}
+.orange {
+  background-color: orange;
+}
+
+.Tutorial-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Tutorial-subcontainer {
+  display: flex;
+  height: 80vh;
+  background-color: var(--lightpink);
+  border-radius: 1em;
+  box-shadow: 0 0.6em var(--darkpink);
+  transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.Tutorial-subcontainer:nth-child(1) {
+  flex: 1.2;
+}
+
+.Tutorial-subcontainer:nth-child(2) {
+  flex: 1;
+}
+
+.Tutorial-navbar {
+  flex-basis: 5vw;
+  height: 100vh;
+}

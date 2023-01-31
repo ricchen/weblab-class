@@ -86,7 +86,7 @@ const Lobby = (props) => {
               <div className="Lobby-text" style={{ marginTop: "2em" }}>
                 lobby name: {props.name}
               </div>
-              <div className="Lobby-text">${props.roomId}</div>
+              <div className="Lobby-text">{props.roomId}</div>
             </div>
             <div className="Lobby-midpanel">
               <div className="Lobby-text" style={{ marginTop: "1em" }}>
@@ -94,7 +94,7 @@ const Lobby = (props) => {
               </div>
             </div>
             <div className="Lobby-midpanel">
-              <SpecialButton url="/achievements" name="tutorial" />
+              <SpecialButton url="/tutorial" name="tutorial" />
             </div>
           </div>
           <div className="Lobby-subcontainer"></div>
@@ -104,9 +104,9 @@ const Lobby = (props) => {
         <NavBar
           userId={props.userId}
           name1="profile"
-          name2="rules"
+          name2="tutorial"
           url1="/profile/"
-          url2="/achievements/"
+          url2="/tutorial/"
         />
         {hasStarted ? (
           <Redirect exact from={`/lobby/${props.roomId}`} to={`/game/${props.roomId}`} />

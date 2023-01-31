@@ -15,6 +15,8 @@
 }
 
 .Start-left-container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   height: 100vh;
 }
@@ -29,8 +31,42 @@
 }
 
 .Start-navbar {
-  flex: 0.222;
+  flex: calc(5 / 47.5);
   height: 100vh;
+}
+
+.Start-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lightpink);
+  justify-content: center;
+  align-self: center;
+  margin-left: 3em;
+  width: 40vw;
+  border-radius: 1em;
+  box-shadow: 0 0.6em var(--darkpink);
+  transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.Start-panel:nth-child(1) {
+  flex: 0.25;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.Start-panel:nth-child(2) {
+  flex: 1;
+  margin-bottom: 4em;
+}
+
+.Start-text {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.85em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0.3em;
 }
 
 .Start-textbox {

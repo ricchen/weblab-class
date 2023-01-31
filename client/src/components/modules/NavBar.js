@@ -33,7 +33,7 @@ const NavBar = (props) => {
 
         <Link
           className="NavBar-button"
-          to={props.url2}
+          to={props.url2 + props.userId}
           onClick={(e) => {
             setIsToggled(!isToggled);
             e.preventDefault();

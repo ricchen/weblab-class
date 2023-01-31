@@ -40,7 +40,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
         <div className="skeleton-button-shell">
           {userId ? (
             <SpecialButton
-              url="/start/"
+              url={`/start/${userId}`}
               name="START"
               style={{ marginBottom: "1em", width: "50%", height: "15%" }}
             />

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { SlideOut } from "../modules/Transition";
@@ -18,13 +17,17 @@ const Start = (props) => {
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleCreate = (event) => {
+    console.log(code);
     const createRoom = (code) => {
       const body = { roomId: code };
+      console.log(body);
       post("/api/createRoom", body).then((log) => {
         setMessage(log.msg);
+        console.log(log.msg);
         if (log.msg == "Success") {
           setCode(code);
         }
@@ -59,7 +62,14 @@ const Start = (props) => {
     <>
       <BrowserRouter>
         <div className="Start-container">
-          <div className="Start-left-container"></div>
+          <div className="Start-left-container">
+            <div className="Start-panel">
+              <div className="Start-text">escape the maize!</div>
+            </div>
+            <div className="Start-panel">
+              <img src={"../../public/tileset/referenceimage.png"} />
+            </div>
+          </div>
           <div className="Start-right-container">
             <input type="text" placeholder="NAME" className="Start-textbox"></input>
             <input
@@ -92,9 +102,9 @@ const Start = (props) => {
           <NavBar
             userId={props.userId}
             name1="profile"
-            name2="achievements"
+            name2="tutorial"
             url1="/profile/"
-            url2="/achievements/"
+            url2="/tutorial/"
           />
         </div>
 

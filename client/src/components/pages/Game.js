@@ -6,6 +6,7 @@ import { keyDown, keyUp } from "../../input";
 import { SlideOut } from "../modules/Transition";
 
 import "../../utilities.css";
+import "./Game.css";
 
 //props
 //roomId, String
@@ -50,7 +51,7 @@ const Game = (props) => {
   return (
     <>
       <SlideOut />
-      <div>
+      <div className="Game-container">
         {/* important: canvas needs id to be referenced by canvasManager */}
         {validJoin ? <canvas ref={canvasRef} width="500" height="500" /> : <div>bad join</div>}
         {loginModal}

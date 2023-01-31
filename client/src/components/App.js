@@ -8,7 +8,7 @@ import Start from "./pages/Start.js";
 import Join from "./pages/Join.js";
 import Game from "./pages/Game.js";
 import Profile from "./pages/Profile.js";
-import Achievements from "./pages/Achievements.js";
+import Tutorial from "./pages/Tutorial.js";
 
 import "../utilities.css";
 import "./App.css";
@@ -59,10 +59,10 @@ const App = () => {
             handleLogout={handleLogout}
             userId={userId}
           />
-          <Start path="/start/" userId={userId} />
+          <Start path="/start/:userId" userId={userId} />
           <Join path="/join/" userId={userId} />
           <Game path="/game/:roomId" userId={userId} />
-          <Achievements path="/achievements/" userId={userId} />
+          <Tutorial path="/tutorial/:userId" userId={userId} />
           <Profile path="/profile/:userId" />
           <Lobby path="/lobby/:roomId" userId={userId} />
           <NotFound default />

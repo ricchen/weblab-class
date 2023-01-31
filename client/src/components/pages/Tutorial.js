@@ -4,7 +4,7 @@ import NavBar from "../modules/NavBar.js";
 
 import { SlideOut } from "../modules/Transition.js";
 
-const Achievements = (props) => {
+const Tutorial = (props) => {
   return (
     <>
       <SlideOut />
@@ -14,4 +14,4 @@ const Achievements = (props) => {
   );
 };
 
-export default Achievements;
+export default Tutorial;

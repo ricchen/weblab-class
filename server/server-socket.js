@@ -48,13 +48,11 @@ const removeUser = (user, socket) => {
 };
 
 const addUserToRoom = (roomId, userId) => {
-  if (userId) gameLogic.userToGameMap[userId] = roomId;
   gameLogic.spawnPlayer(roomId, userId);
   io.emit("activeUsers", gameLogic.userToGameMap);
 };
 
 const removePlayerFromRoom = (userId) => {
-  if (userId) delete userToGameMap[userId];
   gameLogic.removePlayer(userId);
   io.emit("activeUsers", gameLogic.userToGameMap);
 };

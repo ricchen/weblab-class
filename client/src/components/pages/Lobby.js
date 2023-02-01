@@ -79,6 +79,7 @@ const Lobby = (props) => {
   const postStart = () => {
     post("/api/startGame", { roomId: props.roomId });
   };
+
   return (
     <>
       <BrowserRouter>

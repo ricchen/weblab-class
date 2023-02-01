@@ -15,21 +15,14 @@ import w13 from "./public/tileset/walls/tlb-wall.png";
 import w14 from "./public/tileset/walls/lrb-wall.png";
 import w15 from "./public/tileset/walls/tlrb-wall.png";
 
-import b1 from "./public/tileset/borders/top-wall.png";
-import b2 from "./public/tileset/borders/right-wall.png";
-import b3 from "./public/tileset/borders/tr-wall.png";
-import b4 from "./public/tileset/borders/bottom-wall.png";
-import b5 from "./public/tileset/borders/vert-default-wall.png";
-import b6 from "./public/tileset/borders/rb-wall.png";
-import b7 from "./public/tileset/borders/trb-wall.png";
-import b8 from "./public/tileset/borders/left-wall.png";
-import b9 from "./public/tileset/borders/tl-wall.png";
-import b10 from "./public/tileset/borders/hor-default-wall.png";
-import b11 from "./public/tileset/borders/tlr-wall.png";
-import b12 from "./public/tileset/borders/lb-wall.png";
-import b13 from "./public/tileset/borders/tlb-wall.png";
-import b14 from "./public/tileset/borders/lrb-wall.png";
-import b15 from "./public/tileset/borders/tlrb-wall.png";
+import b1 from "./public/tileset/borders/top-border.png";
+import b2 from "./public/tileset/borders/right-border.png";
+import b3 from "./public/tileset/borders/bottom-border.png";
+import b4 from "./public/tileset/borders/left-border.png";
+import b5 from "./public/tileset/borders/topright-border.png";
+import b6 from "./public/tileset/borders/bottomright-border.png";
+import b7 from "./public/tileset/borders/bottomleft-border.png";
+import b8 from "./public/tileset/borders/topleft-border.png";
 
 let canvas;
 
@@ -61,6 +54,9 @@ const sources = [
   b8,
 ];
 
+// const borderImages = [];
+// const borderSources = [b1, b2, b3, b4, b5, b6, b7, b8];
+
 /*   1
    8 B 2
      4      hasWall = 1, else 0
@@ -72,7 +68,15 @@ const preload = (sources) => {
   }
 };
 
+// const preloadBorder = (sources) => {
+//   for (var i = 0; i < sources.length; i++) {
+//     borderImages[i] = new Image();
+//     borderImages[i].src = sources[i];
+//   }
+// };
+
 preload(sources);
+// preloadBorder(borderSources);
 
 /** utils */
 

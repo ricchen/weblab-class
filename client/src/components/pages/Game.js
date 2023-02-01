@@ -8,6 +8,8 @@ import { SlideOut } from "../modules/Transition";
 import "../../utilities.css";
 import "./Game.css";
 import BadJoin from "../modules/BadJoin.js";
+import NavBar from "../modules/NavBar.js";
+import { BrowserRouter } from "react-router-dom";
 
 //props
 //roomId, String
@@ -76,6 +78,7 @@ const Game = (props) => {
           <div className="Game-victory">
             the winner is {userObjs[update[props.roomId].winner].name}
             <br />
+            <br />
             congrats!
           </div>
         </div>
@@ -100,20 +103,29 @@ const Game = (props) => {
   } else
     return (
       <>
-        <SlideOut />
-        <div className="Game-container">
-          {/* important: canvas needs id to be referenced by canvasManager */}
-          <canvas
-            ref={canvasRef}
-            width="750"
-            height="750"
-            style={{ width: "45vw", height: "79.992vh" }}
+        <BrowserRouter>
+          <SlideOut />
+          <div className="Game-container">
+            {/* important: canvas needs id to be referenced by canvasManager */}
+            <canvas
+              ref={canvasRef}
+              width="750"
+              height="750"
+              style={{ width: "45vw", height: "79.992vh" }}
+            />
+            {loginModal}
+            {winnerModal}
+            <div className="Game-ui">Score: {score}</div>
+            <div className="Game-ui">Time: {timer}</div>
+          </div>
+          <NavBar
+            name1="home"
+            name2="profile"
+            url1="/start/"
+            url2="/profile/"
+            userId={props.userId}
           />
-          {loginModal}
-          {winnerModal}
-          <div className="Game-ui">Score: {score}</div>
-          <div className="Game-ui">Time: {timer}</div>
-        </div>
+        </BrowserRouter>
       </>
     );
 };

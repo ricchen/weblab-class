@@ -15,10 +15,51 @@ import w13 from "./public/tileset/walls/tlb-wall.png";
 import w14 from "./public/tileset/walls/lrb-wall.png";
 import w15 from "./public/tileset/walls/tlrb-wall.png";
 
+import b1 from "./public/tileset/borders/top-wall.png";
+import b2 from "./public/tileset/borders/right-wall.png";
+import b3 from "./public/tileset/borders/tr-wall.png";
+import b4 from "./public/tileset/borders/bottom-wall.png";
+import b5 from "./public/tileset/borders/vert-default-wall.png";
+import b6 from "./public/tileset/borders/rb-wall.png";
+import b7 from "./public/tileset/borders/trb-wall.png";
+import b8 from "./public/tileset/borders/left-wall.png";
+import b9 from "./public/tileset/borders/tl-wall.png";
+import b10 from "./public/tileset/borders/hor-default-wall.png";
+import b11 from "./public/tileset/borders/tlr-wall.png";
+import b12 from "./public/tileset/borders/lb-wall.png";
+import b13 from "./public/tileset/borders/tlb-wall.png";
+import b14 from "./public/tileset/borders/lrb-wall.png";
+import b15 from "./public/tileset/borders/tlrb-wall.png";
+
 let canvas;
 
 const wallImages = [];
-const sources = [w0, w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15];
+const sources = [
+  w0,
+  w1,
+  w2,
+  w3,
+  w4,
+  w5,
+  w6,
+  w7,
+  w8,
+  w9,
+  w10,
+  w11,
+  w12,
+  w13,
+  w14,
+  w15,
+  b1,
+  b2,
+  b3,
+  b4,
+  b5,
+  b6,
+  b7,
+  b8,
+];
 
 /*   1
    8 B 2

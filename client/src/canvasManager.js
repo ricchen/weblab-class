@@ -32,7 +32,6 @@ import p1 from "./public/charactersprite/spriteup.png";
 import p2 from "./public/charactersprite/spriteright.png";
 import p3 from "./public/charactersprite/spritedown.png";
 import p4 from "./public/charactersprite/spriteleft.png";
-
 import u1 from "./public/charactersprite/spritewalk-u1.png";
 import u2 from "./public/charactersprite/spritewalk-u2.png";
 import r1 from "./public/charactersprite/spritewalk-r1.png";
@@ -42,6 +41,31 @@ import d2 from "./public/charactersprite/spritewalk-d2.png";
 import l1 from "./public/charactersprite/spritewalk-l1.png";
 import l2 from "./public/charactersprite/spritewalk-l2.png";
 
+import rp1 from "./public/charactersprite/red/spriteup.png";
+import rp2 from "./public/charactersprite/red/spriteright.png";
+import rp3 from "./public/charactersprite/red/spritedown.png";
+import rp4 from "./public/charactersprite/red/spriteleft.png";
+import ru1 from "./public/charactersprite/red/spritewalk-u1.png";
+import ru2 from "./public/charactersprite/red/spritewalk-u2.png";
+import rr1 from "./public/charactersprite/red/spritewalk-r1.png";
+import rr2 from "./public/charactersprite/red/spritewalk-r2.png";
+import rd1 from "./public/charactersprite/red/spritewalk-d1.png";
+import rd2 from "./public/charactersprite/red/spritewalk-d2.png";
+import rl1 from "./public/charactersprite/red/spritewalk-l1.png";
+import rl2 from "./public/charactersprite/red/spritewalk-l2.png";
+
+import bp1 from "./public/charactersprite/blue/spriteup.png";
+import bp2 from "./public/charactersprite/blue/spriteright.png";
+import bp3 from "./public/charactersprite/blue/spritedown.png";
+import bp4 from "./public/charactersprite/blue/spriteleft.png";
+import bu1 from "./public/charactersprite/blue/spritewalk-u1.png";
+import bu2 from "./public/charactersprite/blue/spritewalk-u2.png";
+import br1 from "./public/charactersprite/blue/spritewalk-r1.png";
+import br2 from "./public/charactersprite/blue/spritewalk-r2.png";
+import bd1 from "./public/charactersprite/blue/spritewalk-d1.png";
+import bd2 from "./public/charactersprite/blue/spritewalk-d2.png";
+import bl1 from "./public/charactersprite/blue/spritewalk-l1.png";
+import bl2 from "./public/charactersprite/blue/spritewalk-l2.png";
 let canvas;
 
 const wallImages = [];
@@ -76,10 +100,35 @@ const cornImage = [];
 const cornSources = [c1, c2, c3];
 
 const playerStillImage = [];
-const playerStillSources = [p1, p2, p3, p4];
+const playerStillSources = [p1, p2, p3, p4, rp1, rp2, rp3, rp4, bp1, bp2, bp3, bp4];
 
 const playerMoveImage = [];
-const playerMoveSources = [u1, u2, r1, r2, d1, d2, l1, l2];
+const playerMoveSources = [
+  u1,
+  u2,
+  r1,
+  r2,
+  d1,
+  d2,
+  l1,
+  l2,
+  ru1,
+  ru2,
+  rr1,
+  rr2,
+  rd1,
+  rd2,
+  rl1,
+  rl2,
+  bu1,
+  bu2,
+  br1,
+  br2,
+  bd1,
+  bd2,
+  bl1,
+  bl2,
+];
 /*   1
    8 B 2
      4      hasWall = 1, else 0
@@ -124,12 +173,21 @@ setInterval(() => {
 
 /** drawing functions */
 
-const drawPlayer = (context, x, y, dir) => {
+const drawPlayer = (context, x, y, dir, effect) => {
+  let shift = 0;
+  if (effect === "speed") shift = 1;
+  if (effect === "slow") shift = 2;
   if (dir in DIR_ARRAY) {
-    context.drawImage(playerStillImage[DIR_ARRAY[dir]], x, y, PLAYER_LENGTH, PLAYER_LENGTH);
+    context.drawImage(
+      playerStillImage[DIR_ARRAY[dir] + 4 * shift],
+      x,
+      y,
+      PLAYER_LENGTH,
+      PLAYER_LENGTH
+    );
   } else {
     context.drawImage(
-      playerMoveImage[DIR_WALK_ARRAY[dir] * 2 + WALK_POSITION],
+      playerMoveImage[DIR_WALK_ARRAY[dir] * 2 + WALK_POSITION + 8 * shift],
       x,
       y,
       PLAYER_LENGTH,
@@ -197,6 +255,6 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x - camera_x, p.position.y - camera_y, p.direction);
+    drawPlayer(context, p.position.x - camera_x, p.position.y - camera_y, p.direction, p.effect);
   });
 };

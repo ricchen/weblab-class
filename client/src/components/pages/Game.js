@@ -7,6 +7,7 @@ import { SlideOut } from "../modules/Transition";
 
 import "../../utilities.css";
 import "./Game.css";
+import BadJoin from "../modules/BadJoin.js";
 
 //props
 //roomId, String
@@ -60,7 +61,11 @@ const Game = (props) => {
   const processUpdate = (update) => {
     if (update[props.roomId].winner) {
       setWinnerModal(
-        <div>the winner is {userObjs[update[props.roomId].winner].name} yay cool cool</div>
+        <div className="Game-panel">
+          <div className="Game-victory">
+            the winner is {userObjs[update[props.roomId].winner].name} yay cool cool
+          </div>
+        </div>
       );
     } else setWinnerModal(null);
     drawCanvas(update, canvasRef, props.userId, props.roomId);
@@ -76,23 +81,25 @@ const Game = (props) => {
   if (!props.userId) {
     loginModal = <div> Please Login First! </div>;
   }
-
-  return (
-    <>
-      <SlideOut />
-      <div className="Game-container">
-        {/* important: canvas needs id to be referenced by canvasManager */}
-        {validJoin ? <canvas ref={canvasRef} width="750" height="750" /> : <div>bad join</div>}
-        {loginModal}
-        {winnerModal}
-        <div>
-          Score:
-          {userObjs[props.userId] ? userObjs[props.userId].name : null}
-          {score}
+  if (!validJoin) {
+    return <BadJoin />;
+  } else
+    return (
+      <>
+        <SlideOut />
+        <div className="Game-container">
+          {/* important: canvas needs id to be referenced by canvasManager */}
+          <canvas ref={canvasRef} width="750" height="750" />
+          {loginModal}
+          {winnerModal}
+          <div>
+            Score:
+            {userObjs[props.userId] ? userObjs[props.userId].name : null}
+            {score}
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 };
 
 export default Game;

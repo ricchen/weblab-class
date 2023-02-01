@@ -14,7 +14,7 @@ const MAP_ARRAY_LENGTH = 2 * WIDTH + 1;
 const BLOCK_LENGTH = 75;
 const INITIAL_RADIUS = 20;
 const PLAYER_SPEED = 10;
-const WINNING_SCORE = 20;
+const WINNING_SCORE = 5;
 const CORN_NUM = 10;
 const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 

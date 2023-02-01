@@ -74,7 +74,9 @@ const Game = (props) => {
       setWinnerModal(
         <div className="Game-panel">
           <div className="Game-victory">
-            the winner is {userObjs[update[props.roomId].winner].name} !!
+            the winner is {userObjs[update[props.roomId].winner].name}
+            <br />
+            congrats!
           </div>
         </div>
       );

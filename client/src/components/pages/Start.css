@@ -41,22 +41,22 @@
   background-color: var(--lightpink);
   justify-content: center;
   align-self: center;
-  margin-left: 3em;
+  margin-left: 4vw;
   width: 40vw;
-  border-radius: 1em;
-  box-shadow: 0 0.6em var(--darkpink);
+  border-radius: 1vw;
+  box-shadow: 0 0.6vw var(--darkpink);
   transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .Start-panel:nth-child(1) {
   flex: 0.25;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  margin-top: 4vw;
+  margin-bottom: 2.5vw;
 }
 
 .Start-panel:nth-child(2) {
   flex: 1;
-  margin-bottom: 4em;
+  margin-bottom: 5vw;
 }
 
 .Start-panel:hover {
@@ -72,23 +72,23 @@
 .Start-text {
   text-align: center;
   font-weight: 500;
-  font-size: 1.85em;
+  font-size: 2.5vw;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  border-radius: 0.3em;
+  border-radius: 0.8vw;
 }
 
 .Start-textbox {
   text-align: center;
   width: 80%;
-  height: 4em;
-  margin-bottom: 2em;
-  border-radius: 0.5em;
+  height: 6vw;
+  margin-bottom: 3.5vw;
+  border-radius: 1vw;
   border-style: none;
   box-sizing: border-box;
   font-weight: bolder;
-  font-size: 1.3em;
+  font-size: 1.7vw;
   letter-spacing: 0.1em;
 }
 
@@ -99,13 +99,13 @@
   text-align: center;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1.3em;
+  font-size: 1.7vw;
   letter-spacing: 0.1em;
   color: white;
   background-color: var(--lightpink);
-  padding: 1.2em 0 1.2em;
-  border-radius: 0.5em;
-  box-shadow: 0 0.4em var(--darkpink), 0 0.8em black;
+  padding: 2vw 0 2vw;
+  border-radius: 1vw;
+  box-shadow: 0 0.7vw var(--darkpink), 0 1.4vw black;
   transition: 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
   box-sizing: border-box;
   border-style: none;
@@ -113,7 +113,7 @@
 }
 
 .Start-button:hover {
-  box-shadow: 0 0.4em var(--palepink), 0 0.8em white, inset 50em 0 var(--darkerpalepink);
+  box-shadow: 0 0.9vw var(--palepink), 0 1.8vw white, inset 50vw 0 var(--darkerpalepink);
   color: black;
   transform: scale(1.05);
 }

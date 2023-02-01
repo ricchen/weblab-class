@@ -39,8 +39,8 @@
   align-self: center;
   width: 90%;
   height: 85%;
-  border-radius: 1em;
-  box-shadow: 0 0.6em var(--darkpink);
+  border-radius: 1vw;
+  box-shadow: 0 0.7vw var(--darkpink);
   transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -59,25 +59,25 @@
 
 .Profile-name {
   font-weight: bolder;
-  font-size: 2em;
+  font-size: 2.7vw;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   background-color: var(--cyan);
-  padding: 0.5em 3em 0.5em;
+  padding: 1.2vw 6vw 1.2vw;
   border-radius: 0.3em;
-  margin: 1.3em 0.5em 0;
-  box-shadow: 0 0.1em var(--paleblue);
+  margin: 2vw 1vw -2vw;
+  box-shadow: 0 0.4vw var(--paleblue);
 }
 
 .Profile-picture {
   border-radius: 50%;
-  height: 19em;
-  width: 19em;
+  height: 25vw;
+  width: 25vw;
   border: 0.5em solid var(--cyan);
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0.3em var(--paleblue);
+  box-shadow: 0 0.5vw var(--paleblue);
 }
 
 .Profile-test {
@@ -92,7 +92,7 @@
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.1em;
-  font-size: 1.5em;
+  font-size: 2vw;
   line-height: 2em;
   color: white;
   list-style: none;
@@ -101,17 +101,17 @@
 }
 
 .Profile-li:nth-child(1) {
-  font-size: 3em;
+  font-size: 4vw;
 }
 
 .Profile-li:nth-child(2):hover {
-  font-size: 3em;
+  font-size: 4vw;
   color: var(--black);
   font-weight: 700;
 }
 
 .Profile-li:nth-child(3):hover {
-  font-size: 3em;
+  font-size: 4vw;
   color: var(--black);
   font-weight: 700;
 }

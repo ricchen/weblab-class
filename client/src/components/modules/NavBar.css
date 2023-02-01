@@ -20,7 +20,7 @@
   z-index: 89;
   margin-left: -25vw;
   border-radius: 4% 0 0 4%;
-  box-shadow: -0.4em 0 var(--darkpink);
+  box-shadow: -0.6vw 0 var(--darkpink);
 }
 
 .NavBar-container:hover {
@@ -37,17 +37,18 @@
   transform: translate(-50%, -50%);
   text-decoration: none;
   font-weight: bolder;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2vw;
   color: white;
   background-color: var(--cyan);
-  padding: 0.6em 2.4em 0.6em;
+  padding: 1vw 3vw 1vw;
   width: 10vw;
   text-align: center;
   text-transform: uppercase;
-  border-radius: 0.5em;
-  top: calc((var(--n) - 1) * 4em + 3em);
+  border-radius: 1vw;
+  top: calc((var(--n) - 1) * 5vw + 4vw);
   box-shadow: 0 0.2em var(--paleblue);
   transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-size: 1.2vw;
 }
 
 .NavBar-button:nth-child(1) {

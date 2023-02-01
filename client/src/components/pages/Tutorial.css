@@ -21,17 +21,42 @@
   border-radius: 1em;
   box-shadow: 0 0.6em var(--darkpink);
   transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  margin-left: 3em;
 }
 
 .Tutorial-subcontainer:nth-child(1) {
   flex: 1.2;
-}
-
-.Tutorial-subcontainer:nth-child(2) {
-  flex: 1;
+  margin-right: 3em;
 }
 
 .Tutorial-navbar {
   flex-basis: 5vw;
   height: 100vh;
+}
+
+li {
+  text-align: left;
+  justify-items: center;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 1.5em;
+  line-height: 4em;
+  color: white;
+  list-style: none;
+}
+
+.Tutorial-image {
+  position: absolute;
+  width: 8em;
+  left: 4vw;
+}
+
+.Tutorial-image:nth-child(1) {
+  filter: invert(1);
+  left: 35vw;
+}
+
+.Tutorial-image:nth-child(2) {
+  left: 80 vw;
 }

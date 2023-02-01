@@ -6,6 +6,7 @@ import { SlideIn } from "../modules/Transition.js";
 import { SlideOut } from "../modules/Transition.js";
 import NavBar from "../modules/NavBar";
 import "./Profile.css";
+import BadJoin from "../modules/BadJoin";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
@@ -29,7 +30,7 @@ const Profile = (props) => {
     return (
       <>
         <SlideOut />
-        <div> User not found. Please try logging in again. </div>
+        <BadJoin />
       </>
     );
   } else {

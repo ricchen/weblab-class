@@ -87,11 +87,18 @@ const Lobby = (props) => {
 
         <div className="Lobby-container">
           <div className="Lobby-subcontainer">
-            {userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].name : null}
-            <img
-              src={userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].pfp : ""}
-              referrerpolicy="no-referrer"
-            ></img>
+            <div className="Lobby-sidepanel">
+              <div className="Lobby-name">
+                {userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].name : null}
+              </div>
+            </div>
+            <div className="Lobby-sidepanel">
+              <img
+                src={userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].pfp : ""}
+                referrerpolicy="no-referrer"
+                className="Lobby-image"
+              ></img>
+            </div>
           </div>
           <div className="Lobby-subcontainer">
             <div className="Lobby-midpanel">
@@ -106,15 +113,26 @@ const Lobby = (props) => {
               </div>
             </div>
             <div className="Lobby-midpanel">
-              <SpecialButton url="/tutorial" name="tutorial" />
+              <SpecialButton
+                url="/tutorial"
+                name="tutorial"
+                style={{ margin: "1em 1.5em 1em", textTransform: "uppercase" }}
+              />
             </div>
           </div>
           <div className="Lobby-subcontainer">
-            {userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].name : null}
-            <img
-              src={userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].pfp : ""}
-              referrerpolicy="no-referrer"
-            ></img>
+            <div className="Lobby-sidepanel">
+              <div className="Lobby-name">
+                {userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].name : null}
+              </div>
+            </div>
+            <div className="Lobby-sidepanel">
+              <img
+                src={userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].pfp : ""}
+                referrerpolicy="no-referrer"
+                className="Lobby-image"
+              ></img>
+            </div>
           </div>
           <div className="Lobby-navbar"></div>
         </div>

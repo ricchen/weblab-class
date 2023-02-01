@@ -20,6 +20,12 @@ const startRunningGame = () => {
   }, 1000 / 60); // 60 frames per second
 };
 
+const startTimer = () => {
+  setInterval(() => {
+    gameLogic.timerCountdown();
+  }, 1000);
+};
+
 const getActiveUsers = () => {
   setInterval(() => {
     io.emit("activeUsers", gameLogic.userToGameMap);
@@ -28,6 +34,7 @@ const getActiveUsers = () => {
 
 getActiveUsers();
 startRunningGame();
+startTimer();
 
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
@@ -58,7 +65,10 @@ const removePlayerFromRoom = (userId) => {
 };
 
 const startGame = (roomId) => {
-  if (roomId) io.emit("startGame", roomId);
+  if (roomId) {
+    io.emit("startGame", roomId);
+    gameLogic.allGames[roomId].timer = 120;
+  }
 };
 module.exports = {
   init: (http) => {

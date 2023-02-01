@@ -14,7 +14,7 @@ const MAP_ARRAY_LENGTH = 2 * WIDTH + 1;
 const BLOCK_LENGTH = 75;
 const INITIAL_RADIUS = 20;
 const PLAYER_SPEED = 10;
-const WINNING_SCORE = 20;
+const WINNING_SCORE = 10;
 const CORN_NUM = 10;
 const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 
@@ -115,6 +115,7 @@ const createRoom = (gameId) => {
     ongoing: true,
     corn: 0,
     cornPos: [],
+    timer: 0,
   };
 };
 
@@ -136,7 +137,7 @@ const updateGameState = () => {
     checkWin(gameId);
     updatePlayerPositions(gameId);
     detectCollisions(gameId);
-    checkScorePoint(gameId);
+    // checkScorePoint(gameId);
     spawnCorn(gameId);
     playerCollectCorn(gameId);
   });
@@ -224,46 +225,46 @@ const detectCollisions = (gameId) => {
   });
 };
 
-const checkScorePoint = (gameId) => {
-  let gameState = allGames[gameId];
-  Object.keys(gameState.players).forEach((id) => {
-    if (gameState.players[id] != undefined) {
-      gameState.win.forEach((win) => {
-        let hasScored = intersect(
-          gameState.players[id].position,
-          40,
-          40,
-          win,
-          BLOCK_LENGTH,
-          BLOCK_LENGTH
-        );
-        if (hasScored) {
-          gameState.players[id].score += 1;
-          startNewMap(gameId);
-          return;
-        }
-      });
-    }
-  });
-};
+// const checkScorePoint = (gameId) => {
+//   let gameState = allGames[gameId];
+//   Object.keys(gameState.players).forEach((id) => {
+//     if (gameState.players[id] != undefined) {
+//       gameState.win.forEach((win) => {
+//         let hasScored = intersect(
+//           gameState.players[id].position,
+//           40,
+//           40,
+//           win,
+//           BLOCK_LENGTH,
+//           BLOCK_LENGTH
+//         );
+//         if (hasScored) {
+//           gameState.players[id].score += 1;
+//           startNewMap(gameId);
+//           return;
+//         }
+//       });
+//     }
+//   });
+// };
 
-const startNewMap = (gameId) => {
-  let mapArray = generateMap();
-  let gameState = allGames[gameId];
-  gameState.map = arrayToMap(mapArray);
-  gameState.walls = findWalls(mapArray);
-  gameState.win = findWin(mapArray);
-  gameState.color = colors[Math.floor(Math.random() * colors.length)];
-  resetPlayerPositions(gameId);
-};
+// const startNewMap = (gameId) => {
+//   let mapArray = generateMap();
+//   let gameState = allGames[gameId];
+//   gameState.map = arrayToMap(mapArray);
+//   gameState.walls = findWalls(mapArray);
+//   gameState.win = findWin(mapArray);
+//   gameState.color = colors[Math.floor(Math.random() * colors.length)];
+//   resetPlayerPositions(gameId);
+// };
 
-const resetPlayerPositions = (gameId) => {
-  let gameState = allGames[gameId];
-  Object.keys(gameState.players).forEach((id) => {
-    gameState.players[id].position = { x: BLOCK_LENGTH, y: BLOCK_LENGTH };
-    gameState.players[id].velocity = { x: 0, y: 0 };
-  });
-};
+// const resetPlayerPositions = (gameId) => {
+//   let gameState = allGames[gameId];
+//   Object.keys(gameState.players).forEach((id) => {
+//     gameState.players[id].position = { x: BLOCK_LENGTH, y: BLOCK_LENGTH };
+//     gameState.players[id].velocity = { x: 0, y: 0 };
+//   });
+// };
 
 const checkWin = (gameId) => {
   let gameState = allGames[gameId];
@@ -340,6 +341,13 @@ const playerCollectCorn = (gameId) => {
   });
 };
 
+const timerCountdown = () => {
+  Object.keys(allGames).forEach((gameId) => {
+    let gameState = allGames[gameId];
+    gameState.timer -= 1;
+  });
+};
+
 module.exports = {
   allGames,
   userToGameMap,
@@ -349,4 +357,5 @@ module.exports = {
   removePlayer,
   movePlayer,
   stopMovePlayer,
+  timerCountdown,
 };

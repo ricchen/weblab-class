@@ -17,6 +17,7 @@ const Game = (props) => {
   const [usersInLobby, setUsersInLobby] = useState([]);
   const [userObjs, setUserObjs] = useState({});
   const [score, setScore] = useState();
+  const [timer, setTimer] = useState();
 
   // add event listener on mount
   useEffect(() => {
@@ -69,6 +70,7 @@ const Game = (props) => {
 
   const updateScore = (update) => {
     setScore(update[props.roomId].players[props.userId].score);
+    setTimer(update[props.roomId].timer);
   };
 
   // display text if the player is not logged in
@@ -90,6 +92,7 @@ const Game = (props) => {
           {userObjs[props.userId] ? userObjs[props.userId].name : null}
           {score}
         </div>
+        <div>{timer}</div>
       </div>
     </>
   );

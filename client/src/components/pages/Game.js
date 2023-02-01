@@ -91,14 +91,16 @@ const Game = (props) => {
         <SlideOut />
         <div className="Game-container">
           {/* important: canvas needs id to be referenced by canvasManager */}
-          <canvas ref={canvasRef} width="750" height="750" />
+          <canvas
+            ref={canvasRef}
+            width="750"
+            height="750"
+            style={{ width: "45vw", height: "79.992vh" }}
+          />
           {loginModal}
           {winnerModal}
-          <div>
-            Score:
-            {userObjs[props.userId] ? userObjs[props.userId].name : null}
-            {score}
-          </div>
+          <div className="Game-ui">Score: {score}</div>
+          <div className="Game-ui">Time: {timer}</div>
         </div>
       </>
     );

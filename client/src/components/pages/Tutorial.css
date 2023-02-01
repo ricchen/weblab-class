@@ -17,7 +17,7 @@
 .Tutorial-subcontainer {
   display: flex;
   height: 80vh;
-  background-color: var(--darkpink);
+  background-color: var(--lightpink);
   border-radius: 1em;
   box-shadow: 0 0.6em var(--darkpink);
   transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -29,16 +29,12 @@
   margin-right: 3em;
 }
 
-.Tutorial-subcontainer:hover {
-  background-color: var(--lightpink);
-}
-
 .Tutorial-navbar {
   flex-basis: 5vw;
   height: 100vh;
 }
 
-li {
+.Tutorial-li {
   text-align: left;
   justify-items: center;
   text-decoration: none;
@@ -51,7 +47,7 @@ li {
   text-transform: uppercase;
 }
 
-li:nth-child(1) {
+.Tutorial-li:nth-child(1) {
   font-size: 3em;
 }
 
@@ -78,6 +74,12 @@ li:nth-child(1) {
   left: 80vw;
   top: 26vw;
   transform: rotate(15deg);
+}
+
+.Tutorial-image:nth-child(5) {
+  left: 43vw;
+  top: 35vw;
+  transform: rotate(-50deg);
 }
 
 .Tutorial-image:hover {

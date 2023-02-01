@@ -83,11 +83,12 @@
   text-align: center;
   width: 80%;
   height: 4em;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
   border-radius: 0.5em;
   border-style: none;
   box-sizing: border-box;
   font-weight: bolder;
+  font-size: 1.3em;
   letter-spacing: 0.1em;
 }
 
@@ -98,6 +99,7 @@
   text-align: center;
   text-decoration: none;
   font-weight: 500;
+  font-size: 1.3em;
   letter-spacing: 0.1em;
   color: white;
   background-color: var(--lightpink);

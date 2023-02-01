@@ -55,8 +55,11 @@ const Profile = (props) => {
             </div>
             <div className="Profile-right-container">
               <div className="Profile-panel Profile-transition">
-                <div>wins:{user.wins}</div>
-                <div>games played:{user.games}</div>
+                <ul>
+                  <li className="Profile-li">stats</li>
+                  <li className="Profile-li">wins: {user.wins}</li>
+                  <li className="Profile-li">games played: {user.games}</li>
+                </ul>
               </div>
             </div>
             <div className="Profile-navbar"></div>
@@ -65,7 +68,7 @@ const Profile = (props) => {
               name1="home"
               name2="tutorial"
               url1="/start/"
-              url2="/achievements/"
+              url2="/tutorial/"
             />
           </div>
           {isToggled && <SlideIn />}

@@ -52,22 +52,6 @@
   transform: scale(1.02);
 }
 
-/* .Profile-panel-clone {
-  position: absolute;
-  left: 18.27%;
-  width: 36vw;
-  top: 7.5%;
-  bottom: 7.5%;
-  border-radius: 1em;
-  background-color: green;
-  z-index: -2;
-  margin: 0 -15% 0;
-  box-shadow: 0 0.6em var(--darkpink);
-  animation: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards flipout;
-  transform-style: preserve-3d;
-  pointer-events: none;
-} */
-
 .Profile-subpanel {
   display: grid;
   place-items: center;
@@ -101,6 +85,35 @@
   animation-duration: 1.4s;
   animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation-name: flipin;
+}
+
+.Profile-li {
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 1.5em;
+  line-height: 2em;
+  color: white;
+  list-style: none;
+  text-transform: uppercase;
+  transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.Profile-li:nth-child(1) {
+  font-size: 3em;
+}
+
+.Profile-li:nth-child(2):hover {
+  font-size: 3em;
+  color: var(--black);
+  font-weight: 700;
+}
+
+.Profile-li:nth-child(3):hover {
+  font-size: 3em;
+  color: var(--black);
+  font-weight: 700;
 }
 
 @keyframes flipin {

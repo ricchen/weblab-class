@@ -16,7 +16,6 @@
   letter-spacing: 0.1em;
   font-size: 1.5em;
   color: white;
-  list-style: none;
   text-transform: uppercase;
 }
 
@@ -30,4 +29,26 @@
   background-color: var(--lightpink);
   border-radius: 1em;
   box-shadow: 0 0.4em var(--darkpink);
+  z-index: 50;
+}
+
+.Game-ui {
+  position: absolute;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 3vw;
+  color: white;
+  text-transform: uppercase;
+}
+
+.Game-ui:nth-child(2) {
+  right: 10vw;
+  top: 12vh;
+}
+
+.Game-ui:nth-child(3) {
+  right: 10vw;
+  top: 20vh;
 }

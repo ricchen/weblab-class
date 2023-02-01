@@ -8,6 +8,10 @@ import { SlideOut } from "../modules/Transition";
 import { BrowserRouter } from "react-router-dom";
 import SpecialButton from "../modules/SpecialButton";
 
+import maize from "../../public/pictures/bigpinkmaize.png";
+import orangemaize from "../../public/pictures/bigorangemm.png";
+import bluemaize from "../../public/pictures/bigbluemm.png";
+
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "860650022251-idijj5uv8le61d1el5bbr5ts6atecan8.apps.googleusercontent.com";
 
@@ -18,7 +22,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
         <SlideOut />
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID} style={{ backgroundColor: "green" }}>
           <div className="skeleton-container">
-            <div className="skeleton-title relative">escape the maize</div>
+            <div className="skeleton-title relative">conquer the maize</div>
           </div>
 
           <div className="skeleton-google-container">
@@ -42,7 +46,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
             <SpecialButton
               url={`/start/${userId}`}
               name="START"
-              style={{ marginBottom: "1em", width: "50%", height: "15%" }}
+              style={{ marginBottom: "2vh", width: "50vw", height: "10vh" }}
             />
           ) : null}
         </div>

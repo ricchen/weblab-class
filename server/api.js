@@ -64,7 +64,6 @@ router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
           inUse = true;
         }
       }
-      console.log(gameLogic.userToGameMap);
       if (!inUse) {
         const room = new Room({
           room_id: req.body.roomId,
@@ -96,7 +95,18 @@ router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
   //roomId
   Room.findOne({ room_id: req.body.roomId }).then((room) => {
     if (room) {
-      if (room.players.length < 2) {
+      let inUse = false;
+      for (let player of room.players) {
+        if (
+          player in gameLogic.userToGameMap &&
+          gameLogic.userToGameMap[player] == req.body.roomId
+        ) {
+          inUse = true;
+        }
+      }
+      if (!inUse) {
+        res.send({ msg: "Room Not Found" });
+      } else if (room.players.length < 2) {
         Room.replaceOne(
           { room_id: req.body.roomId },
           { room_id: req.body.roomId, players: room.players.concat([req.user._id]) }
@@ -181,27 +191,6 @@ router.post("updateRooms", auth.ensureLoggedIn, (req, res) => {
     }
   });
 });
-
-// router.post("/addStats", (req, res) => {
-//   if (req.body.winner) {
-//     User.findById(req.body.winner).then((user) => {
-//       if (user) {
-//         User.findByIdAndUpdate(req.body.winner, { wins: user.wins + 1 }).then((user) =>
-//           console.log(user)
-//         );
-//       }
-//     });
-//   }
-//   if (req.body.loser) {
-//     User.findById(req.body.loser).then((user) => {
-//       if (user) {
-//         User.findByIdAndUpdate(req.body.loser, { $set: { losses: user.losses + 1 } }).then((user) =>
-//           console.log(user)
-//         );
-//       }
-//     });
-//   }
-// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

@@ -60,11 +60,21 @@ const Game = (props) => {
   }, []);
 
   const processUpdate = (update) => {
-    if (update[props.roomId].winner) {
+    if (update[props.roomId] && update[props.roomId].tie) {
+      setWinnerModal(
+        <div className="Game-panel">
+          <div className="Game-victory">It's a tie! No one wins</div>
+        </div>
+      );
+    } else if (
+      update[props.roomId] &&
+      update[props.roomId].winner &&
+      userObjs[update[props.roomId].winner]
+    ) {
       setWinnerModal(
         <div className="Game-panel">
           <div className="Game-victory">
-            the winner is {userObjs[update[props.roomId].winner].name} yay cool cool
+            the winner is {userObjs[update[props.roomId].winner].name} !!
           </div>
         </div>
       );
@@ -81,7 +91,7 @@ const Game = (props) => {
   // display text if the player is not logged in
   let loginModal = null;
   if (!props.userId) {
-    loginModal = <div> Please Login First! </div>;
+    return <div> Please Login First! </div>;
   }
   if (!validJoin) {
     return <BadJoin />;

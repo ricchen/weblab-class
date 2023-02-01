@@ -143,18 +143,6 @@ const generateMap = () => {
           }
       }
     });
-
-    // if (r == 0) {
-    //   // place exit in top row
-    //   let doorPos = posToSpace(rand(1, WIDTH));
-    //   mapArray[r][doorPos] = ["door", "exit"];
-    // }
-
-    // if (r == rows - 1) {
-    //   // place entrance in bottom row
-    //   let doorPos = posToSpace(rand(1, WIDTH));
-    //   mapArray[r][doorPos] = "W";
-    // }
   });
 
   // start partitioning

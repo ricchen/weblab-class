@@ -18,17 +18,13 @@ const Start = (props) => {
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleCreate = (event) => {
-    console.log(code);
     const createRoom = (code) => {
       const body = { roomId: code };
-      console.log(body);
       post("/api/createRoom", body).then((log) => {
         setMessage(log.msg);
-        console.log(log.msg);
         if (log.msg == "Success") {
           setCode(code);
         }
@@ -97,6 +93,7 @@ const Start = (props) => {
             >
               create lobby
             </button>
+            {message}
           </div>
           <div className="Start-navbar"></div>
           <NavBar

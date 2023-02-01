@@ -1,0 +1,32 @@
+.BadJoin-title {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  font-size: 6em;
+  color: var(--lightpink);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0.075em var(--darkpink), 0 0.15em black;
+  transition: 0.3s ease-in;
+  text-decoration: none;
+  text-align: center;
+  width: 900vw;
+}
+
+.BadJoin-text {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+  font-size: 3em;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: 0.3s ease-in;
+  text-decoration: none;
+  text-align: center;
+  width: 85vw;
+}

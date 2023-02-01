@@ -32,8 +32,8 @@
 }
 
 .skeleton-title:hover {
-  color: var(--palepink);
-  text-shadow: 0 10px var(--darkerpalepink), 0 18px black;
+  color: var(--neongreen);
+  text-shadow: 0 10px var(--paleblue), 0 18px black;
   transform: scale(1.02);
 }
 

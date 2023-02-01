@@ -88,11 +88,18 @@ const Lobby = (props) => {
 
         <div className="Lobby-container">
           <div className="Lobby-subcontainer">
-            {userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].name : null}
-            <img
-              src={userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].pfp : ""}
-              referrerpolicy="no-referrer"
-            ></img>
+            <div className="Lobby-sidepanel">
+              <div className="Lobby-name">
+                {userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].name : null}
+              </div>
+            </div>
+            <div className="Lobby-sidepanel">
+              <img
+                src={userObjs[usersInLobby[0]] ? userObjs[usersInLobby[0]].pfp : ""}
+                referrerpolicy="no-referrer"
+                className="Lobby-image"
+              ></img>
+            </div>
           </div>
           <div className="Lobby-subcontainer">
             <div className="Lobby-midpanel">
@@ -106,20 +113,36 @@ const Lobby = (props) => {
                 Please wait for 2 players
               </div>
             </div>
-            <div className="Lobby-midpanel">
-              <SpecialButton url="/tutorial" name="tutorial" />
-            </div>
+            <div className="Lobby-midpanel"></div>
           </div>
           <div className="Lobby-subcontainer">
-            {userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].name : null}
-            <img
-              src={userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].pfp : ""}
-              referrerpolicy="no-referrer"
-            ></img>
+            <div className="Lobby-sidepanel">
+              <div className="Lobby-name">
+                {userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].name : null}
+              </div>
+            </div>
+            <div className="Lobby-sidepanel">
+              <img
+                src={userObjs[usersInLobby[1]] ? userObjs[usersInLobby[1]].pfp : ""}
+                referrerpolicy="no-referrer"
+                className="Lobby-image"
+              ></img>
+            </div>
           </div>
           <div className="Lobby-navbar"></div>
         </div>
-
+        <SpecialButton
+          url={`/tutorial/${props.userId}`}
+          name="tutorial"
+          style={{
+            position: "absolute",
+            left: "47.5%",
+            top: "70%",
+            transform: "translate(-50%,-50%)",
+            textTransform: "uppercase",
+            padding: "3.5vh 5vw 3.5vh",
+          }}
+        />
         <NavBar
           userId={props.userId}
           name1="profile"

@@ -71,6 +71,49 @@
   flex: 1;
 }
 
+.Lobby-sidepanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  margin-top: 2em;
+  border-radius: 1em;
+  box-sizing: border-box;
+  border-style: none;
+}
+
+.Lobby-sidepanel:nth-child(1) {
+  margin-top: 3em;
+  background-color: var(--cyan);
+  box-shadow: 0 0.4em var(--paleblue);
+  flex: 0.5;
+}
+
+.Lobby-sidepanel:nth-child(2) {
+  flex: 1;
+  background-color: var(--cyan);
+  box-shadow: 0 0.4em var(--paleblue);
+  margin-bottom: 3em;
+}
+
+.Lobby-name {
+  text-align: center;
+  justify-items: center;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 2em;
+  color: white;
+}
+
+.Lobby-image {
+  width: 70%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
 .Lobby-text {
   text-align: center;
   justify-items: center;

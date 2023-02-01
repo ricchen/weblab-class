@@ -14,6 +14,9 @@ const Game = (props) => {
   const canvasRef = useRef(null);
   const [validJoin, setValidJoin] = useState(false);
   const [winnerModal, setWinnerModal] = useState(null);
+  const [usersInLobby, setUsersInLobby] = useState([]);
+  const [userObjs, setUserObjs] = useState({});
+  const [score, setScore] = useState();
 
   // add event listener on mount
   useEffect(() => {
@@ -28,6 +31,25 @@ const Game = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    const updateUsers = (allUsers) => {
+      let users = [];
+      Object.keys(allUsers).forEach((userId) => {
+        if (allUsers[userId] == props.roomId) {
+          users.push(userId);
+          get(`/api/user`, { userid: userId }).then((userObj) => {
+            userObjs[userId] = userObj;
+          });
+        }
+      });
+      setUsersInLobby(users);
+    };
+    socket.on("activeUsers", updateUsers);
+    return () => {
+      socket.off("activeUsers", updateUsers);
+    };
+  }, []);
+
   // update game periodically
   useEffect(() => {
     socket.on("update", (update) => {
@@ -37,9 +59,16 @@ const Game = (props) => {
 
   const processUpdate = (update) => {
     if (update[props.roomId].winner) {
-      setWinnerModal(<div>the winner is {update[props.roomId].winner} yay cool cool</div>);
+      setWinnerModal(
+        <div>the winner is {userObjs[update[props.roomId].winner].name} yay cool cool</div>
+      );
     } else setWinnerModal(null);
     drawCanvas(update, canvasRef, props.userId, props.roomId);
+    updateScore(update);
+  };
+
+  const updateScore = (update) => {
+    setScore(update[props.roomId].players[props.userId].score);
   };
 
   // display text if the player is not logged in
@@ -53,9 +82,14 @@ const Game = (props) => {
       <SlideOut />
       <div className="Game-container">
         {/* important: canvas needs id to be referenced by canvasManager */}
-        {validJoin ? <canvas ref={canvasRef} width="500" height="500" /> : <div>bad join</div>}
+        {validJoin ? <canvas ref={canvasRef} width="750" height="750" /> : <div>bad join</div>}
         {loginModal}
         {winnerModal}
+        <div>
+          Score:
+          {userObjs[props.userId] ? userObjs[props.userId].name : null}
+          {score}
+        </div>
       </div>
     </>
   );

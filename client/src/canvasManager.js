@@ -24,6 +24,10 @@ import b6 from "./public/tileset/borders/bottomright-border.png";
 import b7 from "./public/tileset/borders/bottomleft-border.png";
 import b8 from "./public/tileset/borders/topleft-border.png";
 
+import c1 from "./public/pictures/bigpinkmaize.png";
+import c2 from "./public/pictures/bigorangemm.png";
+import c3 from "./public/pictures/wasd.png";
+
 let canvas;
 
 const wallImages = [];
@@ -54,6 +58,9 @@ const sources = [
   b8,
 ];
 
+const cornImage = [];
+const cornSources = [c1, c2, c3];
+
 /*   1
    8 B 2
      4      hasWall = 1, else 0
@@ -62,6 +69,10 @@ const preload = (sources) => {
   for (var i = 0; i < sources.length; i++) {
     wallImages[i] = new Image();
     wallImages[i].src = sources[i];
+  }
+  for (var i = 0; i < cornSources.length; i++) {
+    cornImage[i] = new Image();
+    cornImage[i].src = cornSources[i];
   }
 };
 
@@ -117,9 +128,22 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
           BLOCK_LENGTH,
           BLOCK_LENGTH
         );
-      } else if (drawState.map[row][col] == -1) {
-        context.fillStyle = "yellow";
-        context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
+      } else if (drawState.map[row][col] < 0) {
+        context.clearRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
+        context.drawImage(
+          wallImages[0],
+          col - camera_x,
+          row - camera_y,
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        context.drawImage(
+          cornImage[-drawState.map[row][col] - 1],
+          col - camera_x,
+          row - camera_y,
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
       } else if (drawState.map[row][col] == -2) {
         context.fillStyle = "white";
         context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);

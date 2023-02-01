@@ -114,7 +114,9 @@ const createRoom = (gameId) => {
     color: colors[Math.floor(Math.random() * colors.length)],
     ongoing: true,
     corn: 0,
-    cornPos: [],
+    reg: [],
+    speed: [],
+    slow: [],
     timer: 0,
   };
 };
@@ -311,8 +313,19 @@ const spawnCorn = (gameId) => {
   };
   if (gameState.corn < CORN_NUM) {
     let pos = getSpawnLocation();
-    gameState.map[BLOCK_LENGTH * pos[0]][BLOCK_LENGTH * pos[1]] = "-2";
-    gameState.cornPos.push({ x: BLOCK_LENGTH * pos[1], y: BLOCK_LENGTH * pos[0] });
+    let rand = Math.floor(Math.random() * 100);
+    let type;
+    if (rand < 60) {
+      type = -1;
+      gameState.reg.push({ x: BLOCK_LENGTH * pos[1], y: BLOCK_LENGTH * pos[0] });
+    } else if (rand < 80) {
+      type = -2;
+      gameState.speed.push({ x: BLOCK_LENGTH * pos[1], y: BLOCK_LENGTH * pos[0] });
+    } else {
+      type = -3;
+      gameState.slow.push({ x: BLOCK_LENGTH * pos[1], y: BLOCK_LENGTH * pos[0] });
+    }
+    gameState.map[BLOCK_LENGTH * pos[0]][BLOCK_LENGTH * pos[1]] = type;
     gameState.corn += 1;
   }
 };
@@ -321,20 +334,20 @@ const playerCollectCorn = (gameId) => {
   let gameState = allGames[gameId];
   Object.keys(gameState.players).forEach((id) => {
     if (gameState.players[id] != undefined) {
-      for (let corn in gameState.cornPos) {
+      for (let corn in gameState.reg) {
         let hasScored = intersect(
           gameState.players[id].position,
           40,
           40,
-          gameState.cornPos[corn],
+          gameState.reg[corn],
           BLOCK_LENGTH,
           BLOCK_LENGTH
         );
         if (hasScored) {
           gameState.players[id].score += 1;
-          gameState.map[gameState.cornPos[corn].y][gameState.cornPos[corn].x] = "0";
+          gameState.map[gameState.reg[corn].y][gameState.reg[corn].x] = "0";
           gameState.corn -= 1;
-          delete gameState.cornPos[corn];
+          delete gameState.reg[corn];
         }
       }
     }

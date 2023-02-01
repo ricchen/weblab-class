@@ -1,3 +1,6 @@
+// Original JavaScript code by Chirp Internet: chirpinternet.eu
+// Please acknowledge use of this code by including this header.
+
 let mapArray;
 
 const WIDTH = 10; //ALSO CHANGE IN GAMELOGIC
@@ -27,7 +30,6 @@ const inBounds = (r, c) => {
 };
 
 const shuffle = (array) => {
-  // sauce: https://stackoverflow.com/a/12646864
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -36,7 +38,6 @@ const shuffle = (array) => {
 };
 
 const partition = (r1, r2, c1, c2) => {
-  // create partition walls
   // ref: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
 
   let horiz, vert, x, y, start, end;
@@ -75,8 +76,6 @@ const partition = (r1, r2, c1, c2) => {
 
   let gaps = shuffle([true, true, true, false]);
 
-  // create gaps in partition walls
-
   if (gaps[0]) {
     let gapPosition = rand(c1, vert);
     mapArray[posToWall(horiz)][posToSpace(gapPosition)] = [];
@@ -96,8 +95,6 @@ const partition = (r1, r2, c1, c2) => {
     let gapPosition = rand(horiz + 1, r2 + 1);
     mapArray[posToSpace(gapPosition)][posToWall(vert)] = [];
   }
-
-  // recursively partition newly created chambers
 
   partition(r1, horiz - 1, c1, vert - 1);
   partition(horiz + 1, r2, c1, vert - 1);

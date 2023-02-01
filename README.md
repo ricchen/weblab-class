@@ -35,3 +35,9 @@ Learned to create dynamic styles by passing props:
 https://youtu.be/eh51ouTW190
 
 MDN Webdocs (general use)
+
+StackOverflow
+
+Maze Generating Algorithm
+https://www.the-art-of-web.com/javascript/maze-generator/
+https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method

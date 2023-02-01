@@ -9,7 +9,6 @@ var Maze, MazeGame;
 const makeMaze = (id, width, height, speech = false) => {
   Maze = new FancyMazeBuilder(width, height);
   Maze.display(id);
-  console.log(id);
   MazeGame = new Mazing("maze");
   if (speech) {
     MazeGame.enableSpeech();

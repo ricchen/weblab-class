@@ -18,12 +18,10 @@ const Join = (props) => {
   // called whenever the user types in the new post input box
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log(value);
   };
 
   const handleCreate = (event) => {
     const createRoom = (code) => {
-      console.log(code);
       const body = { roomId: code };
       post("/api/createRoom", body).then((log) => {
         setMessage(log.msg);

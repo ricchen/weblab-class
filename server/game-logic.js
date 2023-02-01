@@ -13,9 +13,16 @@ const MAP_LENGTH = 500;
 const MAP_ARRAY_LENGTH = 2 * WIDTH + 1;
 const BLOCK_LENGTH = 75;
 const INITIAL_RADIUS = 20;
-const PLAYER_SPEED = 10;
+const PLAYER_SPEED = 5;
 const WINNING_SCORE = 10;
 const CORN_NUM = 10;
+const speedModifier = { "": 1, speed: 1.5, slow: 0.5 };
+const moveToStill = {
+  "up-walk": "up",
+  "right-walk": "right",
+  "down-walk": "down",
+  "left-walk": "left",
+};
 const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 
 const userToGameMap = {}; // maps user ID to Game
@@ -117,7 +124,8 @@ const createRoom = (gameId) => {
     reg: [],
     speed: [],
     slow: [],
-    timer: 0,
+    timer: 120,
+    tie: false,
   };
 };
 
@@ -131,17 +139,22 @@ const spawnPlayer = (gameId, id) => {
     position: { x: BLOCK_LENGTH, y: BLOCK_LENGTH },
     velocity: { x: 0, y: 0 },
     score: 0,
+    effect: "",
+    timer: 0,
+    direction: "down",
   };
 };
 
 const updateGameState = () => {
   Object.keys(allGames).forEach((gameId) => {
-    checkWin(gameId);
-    updatePlayerPositions(gameId);
-    detectCollisions(gameId);
-    // checkScorePoint(gameId);
-    spawnCorn(gameId);
-    playerCollectCorn(gameId);
+    if (allGames[gameId].ongoing) {
+      checkWin(gameId);
+      updatePlayerPositions(gameId);
+      detectCollisions(gameId);
+      updatePlayerEffects(gameId);
+      spawnCorn(gameId);
+      playerCollectCorn(gameId);
+    }
   });
 };
 
@@ -163,16 +176,16 @@ const movePlayer = (id, dir) => {
   if (gameState.players[id] == undefined) {
     return;
   }
-
+  let customSpeed = PLAYER_SPEED * speedModifier[gameState.players[id].effect];
   // Move player (unbounded)
   if (dir === "up") {
-    gameState.players[id].velocity.y = -PLAYER_SPEED;
+    gameState.players[id].velocity.y = -customSpeed;
   } else if (dir === "down") {
-    gameState.players[id].velocity.y = PLAYER_SPEED;
+    gameState.players[id].velocity.y = customSpeed;
   } else if (dir === "left") {
-    gameState.players[id].velocity.x = -PLAYER_SPEED;
+    gameState.players[id].velocity.x = -customSpeed;
   } else if (dir === "right") {
-    gameState.players[id].velocity.x = PLAYER_SPEED;
+    gameState.players[id].velocity.x = customSpeed;
   }
 };
 
@@ -205,6 +218,28 @@ const updatePlayerPositions = (gameId) => {
   });
 };
 
+const updatePlayerEffects = (gameId) => {
+  let gameState = allGames[gameId];
+  Object.keys(gameState.players).forEach((id) => {
+    if (gameState.players[id] != undefined) {
+      if (gameState.players[id].timer < 0 && gameState.players[id].effect !== "")
+        gameState.players[id].effect = "";
+
+      if (gameState.players[id].velocity.y > 0) gameState.players[id].direction = "down-walk";
+      else if (gameState.players[id].velocity.y < 0) gameState.players[id].direction = "up-walk";
+      else if (gameState.players[id].velocity.x > 0) gameState.players[id].direction = "right-walk";
+      else if (gameState.players[id].velocity.x < 0) gameState.players[id].direction = "left-walk";
+      if (
+        gameState.players[id].velocity.x == 0 &&
+        gameState.players[id].velocity.y == 0 &&
+        gameState.players[id].direction in moveToStill
+      ) {
+        gameState.players[id].direction = moveToStill[gameState.players[id].direction];
+      }
+    }
+  });
+};
+
 const detectCollisions = (gameId) => {
   let gameState = allGames[gameId];
   Object.keys(gameState.players).forEach((id) => {
@@ -227,56 +262,20 @@ const detectCollisions = (gameId) => {
   });
 };
 
-// const checkScorePoint = (gameId) => {
-//   let gameState = allGames[gameId];
-//   Object.keys(gameState.players).forEach((id) => {
-//     if (gameState.players[id] != undefined) {
-//       gameState.win.forEach((win) => {
-//         let hasScored = intersect(
-//           gameState.players[id].position,
-//           40,
-//           40,
-//           win,
-//           BLOCK_LENGTH,
-//           BLOCK_LENGTH
-//         );
-//         if (hasScored) {
-//           gameState.players[id].score += 1;
-//           startNewMap(gameId);
-//           return;
-//         }
-//       });
-//     }
-//   });
-// };
-
-// const startNewMap = (gameId) => {
-//   let mapArray = generateMap();
-//   let gameState = allGames[gameId];
-//   gameState.map = arrayToMap(mapArray);
-//   gameState.walls = findWalls(mapArray);
-//   gameState.win = findWin(mapArray);
-//   gameState.color = colors[Math.floor(Math.random() * colors.length)];
-//   resetPlayerPositions(gameId);
-// };
-
-// const resetPlayerPositions = (gameId) => {
-//   let gameState = allGames[gameId];
-//   Object.keys(gameState.players).forEach((id) => {
-//     gameState.players[id].position = { x: BLOCK_LENGTH, y: BLOCK_LENGTH };
-//     gameState.players[id].velocity = { x: 0, y: 0 };
-//   });
-// };
-
 const checkWin = (gameId) => {
   let gameState = allGames[gameId];
-  Object.keys(gameState.players).forEach((id) => {
-    if (gameState.players[id].score >= WINNING_SCORE) {
-      gameState.winner = id;
-      if (gameState.ongoing) addStats(gameId);
-      gameState.ongoing = false;
+  if (gameState.timer < 0) {
+    let ids = Object.keys(gameState.players);
+    if (ids.length < 2) return;
+    if (gameState.players[ids[0]].score === gameState.players[ids[1]].score) gameState.tie = true;
+    else {
+      if (gameState.players[ids[0]].score > gameState.players[ids[1]].score)
+        gameState.winner = ids[0];
+      else gameState.winner = ids[1];
     }
-  });
+    if (gameState.ongoing) addStats(gameId);
+    gameState.ongoing = false;
+  }
 };
 
 const addStats = (gameId) => {
@@ -350,6 +349,48 @@ const playerCollectCorn = (gameId) => {
           delete gameState.reg[corn];
         }
       }
+      //SPEED
+      for (let corn in gameState.speed) {
+        let hasScored = intersect(
+          gameState.players[id].position,
+          40,
+          40,
+          gameState.speed[corn],
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        if (hasScored) {
+          gameState.players[id].score += 1;
+          gameState.map[gameState.speed[corn].y][gameState.speed[corn].x] = "0";
+          gameState.corn -= 1;
+          gameState.players[id].effect = "speed";
+          gameState.players[id].timer = 10;
+          delete gameState.speed[corn];
+        }
+      }
+      //SLOW
+      for (let corn in gameState.slow) {
+        let hasScored = intersect(
+          gameState.players[id].position,
+          40,
+          40,
+          gameState.slow[corn],
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        if (hasScored) {
+          gameState.players[id].score += 1;
+          gameState.map[gameState.slow[corn].y][gameState.slow[corn].x] = "0";
+          gameState.corn -= 1;
+          let opponent =
+            Object.keys(gameState.players)[0] == id
+              ? Object.keys(gameState.players)[1]
+              : Object.keys(gameState.players)[0];
+          gameState.players[opponent].effect = "slow";
+          gameState.players[opponent].timer = 5;
+          delete gameState.slow[corn];
+        }
+      }
     }
   });
 };
@@ -358,6 +399,9 @@ const timerCountdown = () => {
   Object.keys(allGames).forEach((gameId) => {
     let gameState = allGames[gameId];
     gameState.timer -= 1;
+    Object.keys(gameState.players).forEach((id) => {
+      gameState.players[id].timer -= 1;
+    });
   });
 };
 

@@ -17,7 +17,7 @@
 .Tutorial-subcontainer {
   display: flex;
   height: 80vh;
-  background-color: var(--lightpink);
+  background-color: var(--darkpink);
   border-radius: 1em;
   box-shadow: 0 0.6em var(--darkpink);
   transition: 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -27,6 +27,10 @@
 .Tutorial-subcontainer:nth-child(1) {
   flex: 1.2;
   margin-right: 3em;
+}
+
+.Tutorial-subcontainer:hover {
+  background-color: var(--lightpink);
 }
 
 .Tutorial-navbar {
@@ -41,22 +45,35 @@ li {
   font-weight: 500;
   letter-spacing: 0.1em;
   font-size: 1.5em;
-  line-height: 4em;
+  line-height: 3em;
   color: white;
   list-style: none;
+  text-transform: uppercase;
+}
+
+li:nth-child(1) {
+  font-size: 3em;
 }
 
 .Tutorial-image {
   position: absolute;
   width: 8em;
-  left: 4vw;
-}
-
-.Tutorial-image:nth-child(1) {
-  filter: invert(1);
-  left: 35vw;
+  transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .Tutorial-image:nth-child(2) {
-  left: 80 vw;
+  left: 40vw;
+  top: 15vw;
+  filter: invert(1);
+  transform: rotate(10deg);
+}
+
+.Tutorial-image:nth-child(3) {
+  left: 52vw;
+  top: 20vw;
+  transform: rotate(-20deg);
+}
+
+.Tutorial-image:hover {
+  transform: scale(1.1);
 }

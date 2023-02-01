@@ -113,13 +113,7 @@ const Lobby = (props) => {
                 Please wait for 2 players
               </div>
             </div>
-            <div className="Lobby-midpanel">
-              <SpecialButton
-                url="/tutorial"
-                name="tutorial"
-                style={{ margin: "1em 1.5em 1em", textTransform: "uppercase" }}
-              />
-            </div>
+            <div className="Lobby-midpanel"></div>
           </div>
           <div className="Lobby-subcontainer">
             <div className="Lobby-sidepanel">
@@ -137,7 +131,18 @@ const Lobby = (props) => {
           </div>
           <div className="Lobby-navbar"></div>
         </div>
-
+        <SpecialButton
+          url={`/tutorial/${props.userId}`}
+          name="tutorial"
+          style={{
+            position: "absolute",
+            left: "47.5%",
+            top: "70%",
+            transform: "translate(-50%,-50%)",
+            textTransform: "uppercase",
+            padding: "3.5vh 5vw 3.5vh",
+          }}
+        />
         <NavBar
           userId={props.userId}
           name1="profile"

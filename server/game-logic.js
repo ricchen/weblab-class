@@ -293,8 +293,6 @@ const addStats = (gameId) => {
   });
 };
 
-checkW;
-
 const spawnCorn = (array) => {
   const getSpawnLocation = () => {
     let valid = false;

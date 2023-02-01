@@ -6,7 +6,7 @@ import { useState } from "react";
 import { SlideOut } from "../modules/Transition.js";
 import "./Tutorial.css";
 import arrowkeys from "../../public/pictures/arrowkeys.png";
-import maize from "../../public/pictures/pinkmaize.png";
+import maize from "../../public/pictures/bigpinkmaize.png";
 
 const Tutorial = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -18,15 +18,16 @@ const Tutorial = (props) => {
         <div className="Tutorial-container">
           <div className="Tutorial-subcontainer">
             <ul>
+              <li>Tutorial</li>
               <li>Use arrow keys to move!</li>
               <li>Grab as much maize in 2 minutes!</li>
-              <li>Grab magical maize to buff yourself or debuff opponents!</li>
+              <li>Use magical maize to buff yourself or debuff opponents!</li>
               <li>Best maize collector wins!</li>
             </ul>
             <img src={arrowkeys} className="Tutorial-image" />
             <img src={maize} className="Tutorial-image" />
           </div>
-          <div className="Tutorial-navbar orange"></div>
+          <div className="Tutorial-navbar"></div>
           <NavBar
             userId={props.userId}
             name1="home"

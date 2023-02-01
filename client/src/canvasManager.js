@@ -54,9 +54,6 @@ const sources = [
   b8,
 ];
 
-// const borderImages = [];
-// const borderSources = [b1, b2, b3, b4, b5, b6, b7, b8];
-
 /*   1
    8 B 2
      4      hasWall = 1, else 0
@@ -68,40 +65,22 @@ const preload = (sources) => {
   }
 };
 
-// const preloadBorder = (sources) => {
-//   for (var i = 0; i < sources.length; i++) {
-//     borderImages[i] = new Image();
-//     borderImages[i].src = sources[i];
-//   }
-// };
-
 preload(sources);
 // preloadBorder(borderSources);
 
 /** utils */
 
-// converts a coordinate in a normal X Y plane to canvas coordinates
-const convertCoord = (x, y) => {
-  if (!canvas) return;
-  return {
-    drawX: x,
-    drawY: y,
-  };
-};
-
-// fills a circle at a given x, y canvas coord with radius and color
-const fillCircle = (context, x, y, radius, color) => {
-  context.beginPath();
-  context.arc(x, y, radius, 0, 2 * Math.PI, false);
-  context.fillStyle = color;
-  context.fill();
-};
+const WIDTH = 10;
+const BLOCK_LENGTH = 75;
+const PLAYER_LENGTH = 60;
+const CANVAS_LENGTH = 750;
+const MAP_LENGTH = (2 * WIDTH + 1) * BLOCK_LENGTH;
 
 /** drawing functions */
 
 const drawPlayer = (context, x, y, color) => {
   context.fillStyle = color;
-  context.fillRect(x, y, 40, 40);
+  context.fillRect(x, y, PLAYER_LENGTH, PLAYER_LENGTH);
 };
 
 /** main draw */
@@ -119,8 +98,14 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
   let camera_x;
   let camera_y;
   let p = drawState.players[userId];
-  camera_x = Math.min(Math.max(0, p.position.x + 20 - 250), 750);
-  camera_y = Math.min(Math.max(0, p.position.y + 20 - 250), 750);
+  camera_x = Math.min(
+    Math.max(0, p.position.x + PLAYER_LENGTH / 2 - CANVAS_LENGTH / 2),
+    MAP_LENGTH - CANVAS_LENGTH / 2
+  );
+  camera_y = Math.min(
+    Math.max(0, p.position.y + PLAYER_LENGTH / 2 - CANVAS_LENGTH / 2),
+    MAP_LENGTH - CANVAS_LENGTH / 2
+  );
   for (let row in drawState.map) {
     for (let col in drawState.map[row]) {
       if (drawState.map[row][col] >= 0) {
@@ -129,12 +114,15 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
           wallImages[drawState.map[row][col]],
           col - camera_x,
           row - camera_y,
-          50,
-          50
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
         );
       } else if (drawState.map[row][col] == -1) {
         context.fillStyle = "yellow";
-        context.fillRect(col - camera_x, row - camera_y, 50, 50);
+        context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
+      } else if (drawState.map[row][col] == -2) {
+        context.fillStyle = "white";
+        context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
       }
     }
   }

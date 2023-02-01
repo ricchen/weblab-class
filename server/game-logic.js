@@ -11,10 +11,11 @@ const WIDTH = 10; //ALSO CHANGE IN GENERATE MAP
 const LENGTH = 10;
 const MAP_LENGTH = 500;
 const MAP_ARRAY_LENGTH = 2 * WIDTH + 1;
-const BLOCK_LENGTH = 50;
+const BLOCK_LENGTH = 75;
 const INITIAL_RADIUS = 20;
 const PLAYER_SPEED = 10;
-const WINNING_SCORE = 1;
+const WINNING_SCORE = 20;
+const CORN_NUM = 10;
 const colors = ["blue", "green", "purple", "orange", "silver"]; // colors to use for players
 
 const userToGameMap = {}; // maps user ID to Game
@@ -28,7 +29,7 @@ const findWalls = (array) => {
   for (var j = 0; j < MAP_ARRAY_LENGTH; j++) {
     for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
       if (array[j][i] == "B" || array[j][i] == "b") {
-        wallCoords.push({ x: 50 * i, y: 50 * j });
+        wallCoords.push({ x: BLOCK_LENGTH * i, y: BLOCK_LENGTH * j });
       }
     }
   }
@@ -40,7 +41,7 @@ const findWin = (array) => {
   for (var j = 0; j < MAP_ARRAY_LENGTH; j++) {
     for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
       if (array[j][i] == "W") {
-        winCoords.push({ x: 50 * i, y: 50 * j });
+        winCoords.push({ x: BLOCK_LENGTH * i, y: BLOCK_LENGTH * j });
       }
     }
   }
@@ -52,17 +53,17 @@ const arrayToMap = (array) => {
     const row = {};
     for (var i = 0; i < MAP_ARRAY_LENGTH; i++) {
       if (array[j][i] == "B") {
-        row[50 * i] = getWallNumber(array, j, i);
+        row[BLOCK_LENGTH * i] = getWallNumber(array, j, i);
       } else if (array[j][i] == "b") {
-        row[50 * i] = getBorderNumber(array, j, i) + 16;
+        row[BLOCK_LENGTH * i] = getBorderNumber(array, j, i) + 16;
       } else if (array[j][i] == "W") {
-        row[50 * i] = -1;
+        row[BLOCK_LENGTH * i] = -1;
       } else {
-        row[50 * i] = 0;
+        row[BLOCK_LENGTH * i] = 0;
       }
     }
 
-    map[50 * j] = row;
+    map[BLOCK_LENGTH * j] = row;
   }
   return map;
 };
@@ -106,11 +107,14 @@ const createRoom = (gameId) => {
   allGames[gameId] = {
     winner: null,
     players: {},
+    array: mapArray,
     map: arrayToMap(mapArray),
     walls: findWalls(mapArray),
     win: findWin(mapArray),
     color: colors[Math.floor(Math.random() * colors.length)],
     ongoing: true,
+    corn: 0,
+    cornPos: [],
   };
 };
 
@@ -121,7 +125,7 @@ const spawnPlayer = (gameId, id) => {
   userToGameMap[id] = gameId;
   let gameState = allGames[gameId];
   gameState.players[id] = {
-    position: { x: 50, y: 50 },
+    position: { x: BLOCK_LENGTH, y: BLOCK_LENGTH },
     velocity: { x: 0, y: 0 },
     score: 0,
   };
@@ -133,6 +137,8 @@ const updateGameState = () => {
     updatePlayerPositions(gameId);
     detectCollisions(gameId);
     checkScorePoint(gameId);
+    spawnCorn(gameId);
+    playerCollectCorn(gameId);
   });
 };
 
@@ -233,9 +239,6 @@ const checkScorePoint = (gameId) => {
         );
         if (hasScored) {
           gameState.players[id].score += 1;
-          console.log(id);
-          console.log("scored");
-          console.log(gameState.players[id].score);
           startNewMap(gameId);
           return;
         }
@@ -257,7 +260,7 @@ const startNewMap = (gameId) => {
 const resetPlayerPositions = (gameId) => {
   let gameState = allGames[gameId];
   Object.keys(gameState.players).forEach((id) => {
-    gameState.players[id].position = { x: 50, y: 50 };
+    gameState.players[id].position = { x: BLOCK_LENGTH, y: BLOCK_LENGTH };
     gameState.players[id].velocity = { x: 0, y: 0 };
   });
 };
@@ -293,19 +296,48 @@ const addStats = (gameId) => {
   });
 };
 
-checkW;
-
-const spawnCorn = (array) => {
+const spawnCorn = (gameId) => {
+  let gameState = allGames[gameId];
   const getSpawnLocation = () => {
     let valid = false;
     let row, col;
     while (!valid) {
       row = Math.floor(Math.random() * MAP_ARRAY_LENGTH);
       col = Math.floor(Math.random() * MAP_ARRAY_LENGTH);
-      valid = array[row][col] == ".";
+      valid = gameState.array[row][col] == ".";
     }
     return [row, col];
   };
+  if (gameState.corn < CORN_NUM) {
+    let pos = getSpawnLocation();
+    gameState.map[BLOCK_LENGTH * pos[0]][BLOCK_LENGTH * pos[1]] = "-2";
+    gameState.cornPos.push({ x: BLOCK_LENGTH * pos[1], y: BLOCK_LENGTH * pos[0] });
+    gameState.corn += 1;
+  }
+};
+
+const playerCollectCorn = (gameId) => {
+  let gameState = allGames[gameId];
+  Object.keys(gameState.players).forEach((id) => {
+    if (gameState.players[id] != undefined) {
+      for (let corn in gameState.cornPos) {
+        let hasScored = intersect(
+          gameState.players[id].position,
+          40,
+          40,
+          gameState.cornPos[corn],
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        if (hasScored) {
+          gameState.players[id].score += 1;
+          gameState.map[gameState.cornPos[corn].y][gameState.cornPos[corn].x] = "0";
+          gameState.corn -= 1;
+          delete gameState.cornPos[corn];
+        }
+      }
+    }
+  });
 };
 
 module.exports = {

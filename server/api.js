@@ -74,7 +74,7 @@ router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
           .then(room.save())
           .then(gameLogic.createRoom(req.body.roomId))
           .then(socketManager.addUserToRoom(req.body.roomId, req.user._id))
-          .then(res.send({ msg: "Replaced old room, Success" }));
+          .then(res.send({ msg: "Success" }));
       } else {
         res.send({ msg: "Room already exists" });
       }

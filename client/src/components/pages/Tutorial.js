@@ -5,8 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import { SlideOut } from "../modules/Transition.js";
 import "./Tutorial.css";
+
 import arrowkeys from "../../public/pictures/arrowkeys.png";
 import maize from "../../public/pictures/bigpinkmaize.png";
+import orangemaize from "../../public/pictures/bigorangemm.png";
 
 const Tutorial = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -26,6 +28,7 @@ const Tutorial = (props) => {
             </ul>
             <img src={arrowkeys} className="Tutorial-image" />
             <img src={maize} className="Tutorial-image" />
+            <img src={orangemaize} className="Tutorial-image" />
           </div>
           <div className="Tutorial-navbar"></div>
           <NavBar

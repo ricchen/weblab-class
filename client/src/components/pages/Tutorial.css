@@ -74,6 +74,12 @@ li:nth-child(1) {
   transform: rotate(-20deg);
 }
 
+.Tutorial-image:nth-child(4) {
+  left: 80vw;
+  top: 26vw;
+  transform: rotate(15deg);
+}
+
 .Tutorial-image:hover {
   transform: scale(1.1);
 }

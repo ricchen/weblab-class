@@ -27,24 +27,23 @@
   color: var(--lightpink);
   text-decoration: none;
   font-weight: 700;
-  font-size: 8.5em;
+  font-size: 11vw;
   margin-top: 5vh;
 }
 
 .skeleton-title:hover {
-  color: var(--neongreen);
-  text-shadow: 0 10px var(--paleblue), 0 18px black;
   transform: scale(1.02);
 }
 
 .skeleton-button {
   position: absolute;
-  bottom: 1.5em;
-  right: 1.5em;
+  bottom: 4vh;
+  right: 2vw;
   width: 13vw;
+  height: 10vh;
   text-align: center;
   text-decoration: none;
-  font-size: large;
+  font-size: 1.6vw;
   font-weight: 500;
   letter-spacing: 0.1em;
   color: white;
@@ -68,6 +67,35 @@
   margin-top: 3vh;
   justify-content: center;
   font-size: 35px;
+}
+
+.Skeleton-image {
+  position: absolute;
+  width: 10em;
+  transition: 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.Skeleton-image:nth-child(7) {
+  left: 5vw;
+  bottom: 5vw;
+  transform: rotate(-30deg);
+}
+
+.Skeleton-image:nth-child(6) {
+  left: 10vw;
+  top: 18vw;
+  transform: rotate(15deg);
+}
+
+.Skeleton-image:nth-child(5) {
+  right: 5vw;
+  bottom: 15vw;
+  transform: rotate(-50deg);
+  width: 14em;
+}
+
+.Skeleton-image:hover {
+  transform: scale(1.02);
 }
 
 .relative {

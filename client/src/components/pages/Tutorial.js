@@ -9,6 +9,7 @@ import "./Tutorial.css";
 import arrowkeys from "../../public/pictures/arrowkeys.png";
 import maize from "../../public/pictures/bigpinkmaize.png";
 import orangemaize from "../../public/pictures/bigorangemm.png";
+import bluemaize from "../../public/pictures/bigbluemm.png";
 
 const Tutorial = (props) => {
   const [isToggled, setIsToggled] = useState(false);
@@ -20,15 +21,18 @@ const Tutorial = (props) => {
         <div className="Tutorial-container">
           <div className="Tutorial-subcontainer">
             <ul>
-              <li>Tutorial</li>
-              <li>Use arrow keys to move!</li>
-              <li>Grab as much maize in 2 minutes!</li>
-              <li>Use magical maize to buff yourself or debuff opponents!</li>
-              <li>Best maize collector wins!</li>
+              <li className="Tutorial-li">Tutorial</li>
+              <li className="Tutorial-li">Use arrow keys to move!</li>
+              <li className="Tutorial-li">Grab as much maize in 2 minutes!</li>
+              <li className="Tutorial-li">
+                Use magical maize to buff yourself or debuff opponents!
+              </li>
+              <li className="Tutorial-li">Best maize collector wins!</li>
             </ul>
             <img src={arrowkeys} className="Tutorial-image" />
             <img src={maize} className="Tutorial-image" />
             <img src={orangemaize} className="Tutorial-image" />
+            <img src={bluemaize} className="Tutorial-image" />
           </div>
           <div className="Tutorial-navbar"></div>
           <NavBar

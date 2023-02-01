@@ -65,14 +65,13 @@ const Start = (props) => {
         <div className="Start-container">
           <div className="Start-left-container">
             <div className="Start-panel">
-              <div className="Start-text">escape the maize!</div>
+              <div className="Start-text">conquer the maize!</div>
             </div>
             <div className="Start-panel">
               <img src={img} className="Start-image" />
             </div>
           </div>
           <div className="Start-right-container">
-            <input type="text" placeholder="NAME" className="Start-textbox"></input>
             <input
               type="text"
               placeholder="ROOM CODE"

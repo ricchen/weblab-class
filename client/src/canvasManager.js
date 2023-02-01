@@ -24,6 +24,24 @@ import b6 from "./public/tileset/borders/bottomright-border.png";
 import b7 from "./public/tileset/borders/bottomleft-border.png";
 import b8 from "./public/tileset/borders/topleft-border.png";
 
+import c1 from "./public/pictures/bigpinkmaize.png";
+import c2 from "./public/pictures/bigorangemm.png";
+import c3 from "./public/pictures/bigbluemm.png";
+
+import p1 from "./public/charactersprite/spriteup.png";
+import p2 from "./public/charactersprite/spriteright.png";
+import p3 from "./public/charactersprite/spritedown.png";
+import p4 from "./public/charactersprite/spriteleft.png";
+
+import u1 from "./public/charactersprite/spritewalk-u1.png";
+import u2 from "./public/charactersprite/spritewalk-u2.png";
+import r1 from "./public/charactersprite/spritewalk-r1.png";
+import r2 from "./public/charactersprite/spritewalk-r2.png";
+import d1 from "./public/charactersprite/spritewalk-d1.png";
+import d2 from "./public/charactersprite/spritewalk-d2.png";
+import l1 from "./public/charactersprite/spritewalk-l1.png";
+import l2 from "./public/charactersprite/spritewalk-l2.png";
+
 let canvas;
 
 const wallImages = [];
@@ -54,6 +72,14 @@ const sources = [
   b8,
 ];
 
+const cornImage = [];
+const cornSources = [c1, c2, c3];
+
+const playerStillImage = [];
+const playerStillSources = [p1, p2, p3, p4];
+
+const playerMoveImage = [];
+const playerMoveSources = [u1, u2, r1, r2, d1, d2, l1, l2];
 /*   1
    8 B 2
      4      hasWall = 1, else 0
@@ -63,10 +89,23 @@ const preload = (sources) => {
     wallImages[i] = new Image();
     wallImages[i].src = sources[i];
   }
+  for (var i = 0; i < cornSources.length; i++) {
+    cornImage[i] = new Image();
+    cornImage[i].src = cornSources[i];
+  }
+
+  for (var i = 0; i < playerStillSources.length; i++) {
+    playerStillImage[i] = new Image();
+    playerStillImage[i].src = playerStillSources[i];
+  }
+
+  for (var i = 0; i < playerMoveSources.length; i++) {
+    playerMoveImage[i] = new Image();
+    playerMoveImage[i].src = playerMoveSources[i];
+  }
 };
 
 preload(sources);
-// preloadBorder(borderSources);
 
 /** utils */
 
@@ -75,12 +114,28 @@ const BLOCK_LENGTH = 75;
 const PLAYER_LENGTH = 60;
 const CANVAS_LENGTH = 750;
 const MAP_LENGTH = (2 * WIDTH + 1) * BLOCK_LENGTH;
+const DIR_ARRAY = { up: 0, right: 1, down: 2, left: 3 };
+const DIR_WALK_ARRAY = { "up-walk": 0, "right-walk": 1, "down-walk": 2, "left-walk": 3 };
+let WALK_POSITION = 0;
+
+setInterval(() => {
+  WALK_POSITION = 1 - WALK_POSITION;
+}, 500);
 
 /** drawing functions */
 
-const drawPlayer = (context, x, y, color) => {
-  context.fillStyle = color;
-  context.fillRect(x, y, PLAYER_LENGTH, PLAYER_LENGTH);
+const drawPlayer = (context, x, y, dir) => {
+  if (dir in DIR_ARRAY) {
+    context.drawImage(playerStillImage[DIR_ARRAY[dir]], x, y, PLAYER_LENGTH, PLAYER_LENGTH);
+  } else {
+    context.drawImage(
+      playerMoveImage[DIR_WALK_ARRAY[dir] * 2 + WALK_POSITION],
+      x,
+      y,
+      PLAYER_LENGTH,
+      PLAYER_LENGTH
+    );
+  }
 };
 
 /** main draw */
@@ -117,9 +172,22 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
           BLOCK_LENGTH,
           BLOCK_LENGTH
         );
-      } else if (drawState.map[row][col] == -1) {
-        context.fillStyle = "yellow";
-        context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
+      } else if (drawState.map[row][col] < 0) {
+        context.clearRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
+        context.drawImage(
+          wallImages[0],
+          col - camera_x,
+          row - camera_y,
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
+        context.drawImage(
+          cornImage[-drawState.map[row][col] - 1],
+          col - camera_x,
+          row - camera_y,
+          BLOCK_LENGTH,
+          BLOCK_LENGTH
+        );
       } else if (drawState.map[row][col] == -2) {
         context.fillStyle = "white";
         context.fillRect(col - camera_x, row - camera_y, BLOCK_LENGTH, BLOCK_LENGTH);
@@ -129,6 +197,6 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
 
   // draw all the players
   Object.values(drawState.players).forEach((p) => {
-    drawPlayer(context, p.position.x - camera_x, p.position.y - camera_y, "red");
+    drawPlayer(context, p.position.x - camera_x, p.position.y - camera_y, p.direction);
   });
 };

@@ -93,7 +93,7 @@ const Start = (props) => {
             >
               create lobby
             </button>
-            {message}
+            <div className="Start-text Start-error">{message}</div>
           </div>
           <div className="Start-navbar"></div>
           <NavBar

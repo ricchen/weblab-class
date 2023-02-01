@@ -213,11 +213,11 @@ export const drawCanvas = (allGames, canvasRef, userId, gameId) => {
   let p = drawState.players[userId];
   camera_x = Math.min(
     Math.max(0, p.position.x + PLAYER_LENGTH / 2 - CANVAS_LENGTH / 2),
-    MAP_LENGTH - CANVAS_LENGTH / 2
+    MAP_LENGTH - CANVAS_LENGTH
   );
   camera_y = Math.min(
     Math.max(0, p.position.y + PLAYER_LENGTH / 2 - CANVAS_LENGTH / 2),
-    MAP_LENGTH - CANVAS_LENGTH / 2
+    MAP_LENGTH - CANVAS_LENGTH
   );
   for (let row in drawState.map) {
     for (let col in drawState.map[row]) {

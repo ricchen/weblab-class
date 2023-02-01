@@ -135,14 +135,28 @@ const spawnPlayer = (gameId, id) => {
   if (!id) return;
   userToGameMap[id] = gameId;
   let gameState = allGames[gameId];
-  gameState.players[id] = {
-    position: { x: BLOCK_LENGTH, y: BLOCK_LENGTH },
-    velocity: { x: 0, y: 0 },
-    score: 0,
-    effect: "",
-    timer: 0,
-    direction: "down",
-  };
+  if (Object.keys(gameState.players).length == 1) {
+    gameState.players[id] = {
+      position: {
+        x: BLOCK_LENGTH * (MAP_ARRAY_LENGTH - 2),
+        y: BLOCK_LENGTH * (MAP_ARRAY_LENGTH - 2),
+      },
+      velocity: { x: 0, y: 0 },
+      score: 0,
+      effect: "",
+      timer: 0,
+      direction: "down",
+    };
+  } else {
+    gameState.players[id] = {
+      position: { x: BLOCK_LENGTH, y: BLOCK_LENGTH },
+      velocity: { x: 0, y: 0 },
+      score: 0,
+      effect: "",
+      timer: 0,
+      direction: "down",
+    };
+  }
 };
 
 const updateGameState = () => {

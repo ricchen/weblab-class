@@ -17,7 +17,7 @@ const Start = (props) => {
   const [code, setCode] = useState(null);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValue(event.target.value.toUpperCase());
   };
 
   const handleCreate = (event) => {

@@ -66,7 +66,7 @@ const removePlayerFromRoom = (userId) => {
 
 const startGame = (roomId) => {
   if (roomId) {
-    gameLogic.allGames[roomId].timer = 10;
+    gameLogic.allGames[roomId].timer = 120;
     io.emit("startGame", roomId);
   }
 };

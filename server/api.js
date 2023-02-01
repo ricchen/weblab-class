@@ -55,7 +55,29 @@ router.get("/user", (req, res) => {
 router.post("/createRoom", auth.ensureLoggedIn, (req, res) => {
   Room.findOne({ room_id: req.body.roomId }).then((room) => {
     if (room) {
-      res.send({ msg: "Room already exists" });
+      let inUse = false;
+      for (let player of room.players) {
+        if (
+          player in gameLogic.userToGameMap &&
+          gameLogic.userToGameMap[player] == req.body.roomId
+        ) {
+          inUse = true;
+        }
+      }
+      console.log(gameLogic.userToGameMap);
+      if (!inUse) {
+        const room = new Room({
+          room_id: req.body.roomId,
+          players: [req.user._id],
+        });
+        Room.deleteOne({ room_id: req.body.roomId })
+          .then(room.save())
+          .then(gameLogic.createRoom(req.body.roomId))
+          .then(socketManager.addUserToRoom(req.body.roomId, req.user._id))
+          .then(res.send({ msg: "Replaced old room, Success" }));
+      } else {
+        res.send({ msg: "Room already exists" });
+      }
     } else {
       const room = new Room({
         room_id: req.body.roomId,
@@ -84,7 +106,28 @@ router.post("/joinRoom", auth.ensureLoggedIn, (req, res) => {
           })
           .then(res.send({ msg: "Success" }));
       } else {
-        res.send({ msg: "Room Full" });
+        let spotOpen = false;
+        let updatedPlayers = [];
+        for (let player of room.players) {
+          if (
+            !(player in gameLogic.userToGameMap) ||
+            gameLogic.userToGameMap[player] != req.body.roomId
+          ) {
+            spotOpen = true;
+          } else {
+            updatedPlayers.push(player);
+          }
+        }
+        if (spotOpen) {
+          updatedPlayers.push(req.user._id);
+          Room.updateOne({ room_id: req.body.roomId }, { $set: { players: updatedPlayers } })
+            .then(() => {
+              socketManager.addUserToRoom(req.body.roomId, req.user._id);
+            })
+            .then(res.send({ msg: "Success" }));
+        } else {
+          res.send({ msg: "Room Full" });
+        }
       }
     } else {
       res.send({ msg: "Room Not Found" });
@@ -113,7 +156,7 @@ router.post("/startGame", auth.ensureLoggedIn, (req, res) => {
   } else res.send({ msg: "bad" });
 });
 
-router.post("/removePlayer", auth.ensureLoggedIn, (req, res) => {
+router.post("updateRooms", auth.ensureLoggedIn, (req, res) => {
   Room.findOne({ room_id: req.body.roomId }).then((room) => {
     if (room) {
       if (room.players[0] === req.user._id) {

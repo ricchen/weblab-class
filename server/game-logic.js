@@ -2,6 +2,7 @@ const { intersect, collisionVector } = require("./collision");
 
 const User = require("./models/user");
 const Room = require("./models/gameRoom");
+const Lobby = require("./lobbies");
 
 // MazeBuilder = require("./maze-builder");
 
@@ -104,12 +105,21 @@ const createRoom = (gameId) => {
 /** Game logic */
 
 const spawnPlayer = (gameId, id) => {
+  if (!id) return;
+  userToGameMap[id] = gameId;
   let gameState = allGames[gameId];
   gameState.players[id] = {
     position: { x: 50, y: 50 },
     velocity: { x: 0, y: 0 },
     score: 0,
   };
+  // console.log("spawned");
+  // if (gameId in Lobby.activeLobbies) {
+  //   Lobby.activeLobbies[gameId].push(id);
+  // } else {
+  //   Lobby.activeLobbies[gameId] = [id];
+  // }
+  // console.log(Lobby.activeLobbies);
 };
 
 const updateGameState = () => {
@@ -123,11 +133,13 @@ const updateGameState = () => {
 
 /** Remove a player from the game state if they disconnect or if they get eaten */
 const removePlayer = (id) => {
+  if (!id) return;
   let gameId = userToGameMap[id];
   let gameState = allGames[gameId];
   if (gameState.players[id] != undefined) {
     delete gameState.players[id];
   }
+  delete userToGameMap[id];
 };
 
 const movePlayer = (id, dir) => {
